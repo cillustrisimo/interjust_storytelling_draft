@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Meridian Dynamic Report Draft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- TAILWIND CLASSES -->
+<body class="bg-[#203341] text-gray-300 home-is-visible">
+
+        <!-- 
+        HERO SECTION 
+        -->
+        <main id="home" class="h-screen flex flex-col items-center justify-center px-6 transition-all duration-500 ease-in-out">
+            <div id="primary-column" class="max-w-4xl w-full flex flex-col items-center gap-10 transition-all duration-500 ease-in-out">
+                
+                <!-- Enlarged logo (h-32) and text (text-5xl) -->
+                <div id="logo-section" class="flex flex-col md:flex-row items-center justify-center gap-6 w-full transition-all duration-500 ease-in-out">
+                    <div class="flex items-center gap-4 flex-shrink-0">
+                        <div class="flex items-center justify-center text-white text-sm">
+                            <img src="images/logo.svg" alt="Project Meridian Globe Logo" class="h-32 w-auto" >
+                        </div>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white leading-relaxed text-center md:text-left">
+                        Dynamic Report
+                    </h1>
+                </div>
+                
+                <!-- Flex justify-center -->
+                <div id="nav-grid" class="w-full max-w-5xl flex justify-center transition-all duration-500 ease-in-out">
+
+                    <a href="#section-1" class="nav-card block p-6 bg-gray-800/60 border border-gray-700/50 rounded-lg transition-all duration-300 ease-in-out border-2 border-blue-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/30 w-full max-w-md">
+                        <h3 class="text-xl font-semibold text-blue-400 mb-2">Start Exploring</h3>
+                        <p class="text-sm text-gray-300 leading-relaxed">Begin the report</p>
+                    </a>
+
+                </div>
+            </div>
+        </main>
+        
+        <!-- 
+            SCROLLYTELLING SITE 
+        -->
+            <!-- Left bav section -->
+        <nav id="side-nav">
+            <ul>
+                <li><a href="#home" data-nav-target="home" class="active-nav">Home</a></li>
+                <li><a href="#section-1" data-nav-target="section-1">What is universal jurisdiction?</a></li>
+                <li><a href="#section-2" data-nav-target="section-2">What types of crimes can states prosecute?</a></li>
+                <li><a href="#section-3" data-nav-target="section-3">Who can be held responsible?</a></li>
+                <li><a href="#section-4" data-nav-target="section-4">What are the different ways states can investigate?</a></li>
+                <li><a href="#section-5" data-nav-target="section-5">How frequently do states apply universal jurisdiction?</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div id="graphic">
+                <svg id="chart"></svg>
+            </div>
+
+            <div id="scroller">
+                
+                <!-- SECTION 1 (1 Graph) -->
+                <!-- Each "step" renders a new graph, so be sure to paste your graphs in the relevant data-step in script.js -->
+                <div class="step step-full" id="section-1" data-nav-section="section-1">
+                    <h2>What is universal jurisdiction?</h2>
+                </div>
+                <div class="step step-left" data-step="1">
+                    <p>This is the content for the first section. The graph is in state 1. This text appears on the left.</p>
+                </div>
+                <div class="step step-right">
+                    <p>More content for the first section. This text appears on the right. The graph is still in state 1.</p>
+                </div>
+                 <div class="step step-left">
+                    <p>TBLAH BLAH MORE TEXT.</p>
+                </div>
+
+
+                <!-- SECTION 2 (2 Graphs) -->
+                <div class="step step-full" id="section-2" data-nav-section="section-2">
+                    <h2>What types of crimes can States prosecute under universal jurisdiction?</h2>
+                </div>
+                <div class="step step-left" data-step="2">
+                    <p>This is the content for section 2 (Graph 1). As we scrolled to this section, the chart updated to state 2.</p>
+
+                </div>
+                <div class="step step-right" data-step="3">
+                    <p>This is content for section 2 (Graph 2). The chart has now updated to state 3.</p>
+                </div>
+                
+
+                <!-- SECTION 3 (1 Graph) -->
+                <div class="step step-full" id="section-3" data-nav-section="section-3">
+                    <h2>Who can be held responsible under universal jurisdiction?</h2>
+                </div>
+                <div class="step step-right" data-step="4">
+                    <p>This is the content for section 3. The chart has now updated to state 4.</p>
+                </div>
+
+
+                <!-- SECTION 4 (7 Graphs) -->
+                <div class="step step-full" id="section-4" data-nav-section="section-4">
+                    <h2>What are the different ways States can investigate and prosecute crimes that occurred outside their own borders?</h2>
+                </div>
+                <div class="step step-left" data-step="5">
+                    <p>This is the content for section 4 (Graph 1). The chart updates to state 5.</p>
+                </div>
+                <div class="step step-left" data-step="6">
+                    <p>This is the content for section 4 (Graph 2). The chart updates to state 6.</p>
+                </div>
+                <div class="step step-left" data-step="7">
+                    <p>This is the content for section 4 (Graph 3). The chart updates to state 7.</p>
+                </div>
+                <div class="step step-left" data-step="8">
+                    <p>This is the content for section 4 (Graph 4). The chart updates to state 8.</p>
+                </div>
+                <div class="step step-left" data-step="9">
+                    <p>This is the content for section 4 (Graph 5). The chart updates to state 9.</p>
+                </div>
+                <div class="step step-left" data-step="10">
+                    <p>This is the content for section 4 (Graph 6). The chart updates to state 10.</p>
+                </div>
+                <div class="step step-left" data-step="11">
+                    <p>This is the content for section 4 (Graph 7). The chart updates to state 11.</p>
+                </div>
+
+
+                <!-- SECTION 5 (2 Graphs) -->
+                <div class="step step-full" id="section-5" data-nav-section="section-5">
+                    <h2>How frequently do States apply universal jurisdiction?</h2>
+                </div>
+                <div class="step step-right" data-step="12">
+                    <p>This is the content for the final section (Graph 1). The chart updates to state 12.</p>
+                </div>
+                <div class="step step-right" data-step="13">
+                    <p>This is the content for the final section (Graph 2). The chart updates to state 13.</p>
+                </div>
+            </div>
+        </main>
+        <!-- End of scrollytelling main -->
+
+
+        </div> <!-- end of .bg-[#203341]/95 -->
+
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- 
+      Load charts.js first, so its functions are defined 
+      before script.js tries to call them.
+    -->
+    <script src="charts.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
