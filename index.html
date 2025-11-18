@@ -64,10 +64,16 @@
                 
                 <!-- SECTION 1 (1 Graph) -->
                 <!-- Each "step" renders a new graph, so be sure to paste your graphs in the relevant data-step in script.js -->
-                <div class="step step-full" id="section-1" data-nav-section="section-1">
+                 <div class="step step-timeline" id="section-1">
                     <h2>What is universal jurisdiction?</h2>
+                    <div id="timeline-container">
+                        <svg id="timeline-svg"></svg>
+                        <div id="timeline-events"></div>
+                    </div>
                 </div>
-                <div class="step step-left" data-step="1">
+
+
+                <!-- <div class="step step-left" data-step="1">
                     <p>This is the content for the first section. The graph is in state 1. This text appears on the left.</p>
                 </div>
                 <div class="step step-right">
@@ -75,7 +81,7 @@
                 </div>
                  <div class="step step-left">
                     <p>TBLAH BLAH MORE TEXT.</p>
-                </div>
+                </div> -->
 
 
                 <!-- SECTION 2 (2 Graphs) -->
@@ -145,6 +151,17 @@
         </div> <!-- end of .bg-[#203341]/95 -->
 
 
+
+        <!-- for timeline chart -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-year"></p>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- 
       Load charts.js first, so its functions are defined 
@@ -152,5 +169,6 @@
     -->
     <script src="charts.js"></script>
     <script src="script.js"></script>
+    <script src="timeline.js"></script>
 </body>
 </html>

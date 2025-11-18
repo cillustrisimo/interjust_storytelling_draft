@@ -195,4 +195,288 @@ body:not(.home-is-visible) #graphic {
         /* Give full steps a background on mobile for readability */
         background-color: rgba(45, 55, 72, 0.95);
     }
+    .step-timeline {
+        width: 95% !important;
+        padding: 10px;
+    }
+    #timeline-container {
+        padding: 30px 10px;
+        min-height: 1500px;
+    }
+}
+
+
+
+/* Special step class for timeline - much wider than regular steps */
+.step-timeline {
+    /* Override step-full constraints */
+    max-width: 95% !important; /* Use most of the available width */
+    width: 95% !important;
+    justify-self: center;
+    text-align: center;
+    border: none;
+    background: none;
+    box-shadow: none;
+    opacity: 1 !important; /* Always visible */
+    margin-bottom: 80vh; /* Add space before next section */
+}
+
+.step-timeline h2 {
+    color: #E2E8F0;
+    font-size: 2.25rem;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+/* TIMELINE STYLING */
+/* Timeline Container */
+#timeline-container {
+    position: relative;
+    max-width: 100%; /* Use full width of parent */
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px 20px;
+    /* Height set dynamically by JavaScript */
+}
+
+/* SVG for the vertical line */
+#timeline-svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    z-index: 1;
+}
+
+.timeline-line {
+    stroke: #5a5a5a;
+    stroke-width: 3;
+    fill: none;
+    /* Animation values set by JavaScript */
+}
+
+/* Timeline Events Container */
+#timeline-events {
+    position: relative;
+    z-index: 2;
+    height: 100%; /* Match container height */
+}
+
+/* Individual Event */
+.timeline-event {
+    position: absolute; /* Already set in JS, but reinforce here */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-event.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Event Content */
+.event-content {
+    width: 45%;
+    max-width: 500px; /* Prevent text from stretching too wide */
+    padding: 0 40px;
+}
+
+.event-left .event-content {
+    float: left;
+    text-align: right;
+    padding-right: 80px;
+}
+
+.event-right .event-content {
+    float: right;
+    text-align: left;
+    padding-left: 80px;
+}
+
+/* Circle/Bubble on timeline */
+.timeline-circle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 40px;
+    height: 40px;
+    background: #4a5568;
+    border: 4px solid #2d3748;
+    border-radius: 50%;
+    z-index: 3;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-circle.visible {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.timeline-circle::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #e2e8f0;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.3s;
+}
+
+.timeline-circle.visible::before {
+    opacity: 1;
+}
+
+/* Year Badge */
+.event-year {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e2e8f0;
+    margin-bottom: 15px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Title */
+.event-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #cbd5e0;
+    margin-bottom: 15px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Description */
+.event-description {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #a0aec0;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Read More Button */
+.read-more-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: transparent;
+    border: 2px solid #4a5568;
+    color: #cbd5e0;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+}
+
+.read-more-btn:hover {
+    background: #4a5568;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Modal Popup */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    position: relative;
+    background-color: #2d3748;
+    margin: 10% auto;
+    padding: 40px;
+    border: 1px solid #4a5568;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    color: #cbd5e0;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+}
+
+#modal-title {
+    color: #e2e8f0;
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+}
+
+#modal-year {
+    color: #a0aec0;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+#modal-text {
+    color: #cbd5e0;
+    font-size: 16px;
+    line-height: 1.8;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .event-content {
+        width: 90%;
+        padding: 0 20px !important;
+        text-align: left !important;
+    }
+    
+    .event-left .event-content,
+    .event-right .event-content {
+        float: none;
+        margin-left: 60px;
+    }
+    
+    #timeline-svg {
+        left: 30px;
+    }
+    
+    .timeline-circle {
+        left: 30px;
+    }
 }
