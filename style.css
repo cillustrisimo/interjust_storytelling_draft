@@ -1,482 +1,729 @@
-html {
-    scroll-behavior: smooth;
-    scrollbar-gutter: stable; /* Keeps scrollbar from shifting layout */
+/* ===============================================
+   1. CSS VARIABLES & RESET
+   =============================================== */
+:root {
+    /* Typography */
+    --font-body: Georgia, 'Times New Roman', Times, serif;
+    --font-head: Georgia, 'Times New Roman', Times, serif;
+    
+    /* Layout Dimensions */
+    --max-width: 1200px;    /* Full site width */
+    --wide-width: 900px;    /* NEW: Much wider width for Headers */
+    --text-width: 580px;    /* Standard: Narrow width for reading text */
+    
+    /* Colors */
+    --color-bg: #2D3748;           /* Dark Slate */
+    --color-text: #E2E8F0;         /* Light Gray */
+    --color-text-muted: #A0AEC0;   /* Muted Gray */
+    --color-border: #4A5568;       /* Dark Gray Border */
+    --color-accent: #63B3ED;       /* Bright Blue */
+    --color-card-bg: rgba(45, 55, 72, 0.95); /* Dark Card */
+    --color-header-bg: #1A202C;    /* Very Dark Header */
+    --color-section-alt: #283141;  /* Slightly darker section bg */
 }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
+    font-family: var(--font-body);
+    font-size: 21px; 
+    line-height: 1.7; 
+    color: var(--color-text);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
 }
 
-#side-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 300px; /* New, wider width */
-    height: 100vh; /* Full height */
-    
-    /* UPDATED FOR DARK MODE */
-    background: #2D3748; /* dark gray */
-    color: #E2E8F0; /* light gray */
-    
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    z-index: 100;
-    
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(0);
+/* Headers Global Styles */
+h1, h2, h3, h4 { 
+    font-family: var(--font-head); 
+    font-weight: 700; 
+    line-height: 1.1; 
+    color: #fff; 
+    margin-bottom: 0.5em;
+    /* Ensure headers are allowed to be full width */
+    max-width: 100%; 
 }
 
-/* When NOT on home, fold the nav */
-body:not(.home-is-visible) #side-nav {
-    transform: translateX(-270px);
+a { color: var(--color-accent); text-decoration: none; border-bottom: 1px solid transparent; }
+a:hover { border-bottom-color: var(--color-accent); }
+
+/* ===============================================
+   2. HEADER & HERO (UPDATED)
+   =============================================== */
+.site-header { 
+    padding: 20px 0; 
+    border-bottom: 1px solid var(--color-border); 
+    margin-bottom: 60px; 
+    background: var(--color-header-bg);
+    font-family: sans-serif; 
 }
 
-body:not(.home-is-visible) #side-nav:hover {
-    transform: translateX(0);
+.header-inner { 
+    max-width: var(--max-width); 
+    margin: 0 auto; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 20px; 
 }
 
-#side-nav ul {
-    list-style: none;
-    padding: 20px 0;
-    margin: 0;
+.logo-area { 
+    font-weight: bold; 
+    font-size: 1rem; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
 }
 
-#side-nav li a {
-    display: block;
-    padding: 18px 20px 18px 40px;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: background-color 0.2s, color 0.2s;
-    color: #E2E8F0;
+.site-nav a { 
+    margin-left: 20px; 
+    font-size: 0.85rem; 
+    color: var(--color-text-muted); 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.site-nav a:hover { color: #fff; }
+
+/* HERO SECTION: WIDE TITLE, NARROW INTRO */
+.hero-section { 
+    text-align: center; 
+    padding: 40px 20px 60px 20px; 
+    /* Use the WIDE width so H1 can expand */
+    max-width: var(--wide-width); 
+    margin: 0 auto; 
 }
 
-#side-nav li a:hover {
-    background-color: #4A5568;
+.hero-section h1 { 
+    font-size: 3.8rem; /* Increased size slightly to fill space */
+    margin-bottom: 25px; 
+    letter-spacing: -1px;
+    max-width: 100%; /* Ensures H1 fills the 900px container */
 }
 
-#side-nav li a.active-nav {
-    background-color: #3182CE; /* blue-600 */
-    color: white;
-    font-weight: 700;
-}
-/* --- End of Nav Styling --- */
-
-
-/*
-* We push 'main' to the right to account for the nav tab
-*/
-main {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding-left: 40px; 
+/* Constrain the 'dek' (subtitle) back to reading width */
+.dek { 
+    font-size: 1.4rem; 
+    color: var(--color-text-muted); 
+    line-height: 1.4;
+    margin-bottom: 30px; 
+    font-style: italic;
+    max-width: var(--text-width); /* 580px */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Hide the graphic when on the home screen */
-#graphic {
-    grid-column: 2 / 3;
-    position: sticky;
-    top: 10vh;
-    height: 80vh;
-    align-self: start;
-    
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s, visibility 0.4s;
+.series-label { 
+    text-transform: uppercase; 
+    font-family: sans-serif;
+    font-size: 0.75rem; 
+    letter-spacing: 1px; 
+    color: var(--color-accent); 
+    margin-bottom: 15px; 
+    font-weight: bold;
 }
 
-/* When not on home, show the graphic */
-body:not(.home-is-visible) #graphic {
-    opacity: 1;
-    visibility: visible;
+.byline { 
+    font-family: sans-serif;
+    font-size: 0.85rem; 
+    color: var(--color-text-muted); 
+    text-transform: uppercase;
+    margin-top: 20px;
 }
 
-#graphic svg#chart {
+/* ===============================================
+   3. NARRATIVE BLOCKS (UPDATED)
+   =============================================== */
+.narrative-block { 
+    /* Container is now WIDE (900px) */
+    max-width: var(--wide-width); 
+    margin: 0 auto 80px auto; 
+    padding: 0 10px; 
+}
+
+.narrative-block h2, 
+.narrative-block h3 { 
+    margin-top: 2.5em; 
+    font-size: 2.5rem; /* Larger font to match wider width */
+    color: #fff;
     width: 100%;
-    height: 100%;
+    max-width: 100%; /* Explicitly allow full width */
+    text-align: center; /* Centered headers usually look best in this layout */
 }
 
-
-/* Scroller MAIN */
-#scroller {
-    grid-column: 1 / 4;
-    display: grid;
-    grid-template-columns: 1fr;
-    padding-bottom: 50vh;
-    z-index: 10;
+/*  Paragraphs & Lists are forced back to NARROW (580px) */
+.narrative-block p,
+.narrative-block ul,
+.narrative-block ol,
+.narrative-block blockquote { 
+    max-width: var(--text-width); 
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5em; 
 }
 
-.step {
-    margin-bottom: 80vh;
-    padding: 20px;
-    background-color: rgba(45, 55, 72, 0.95); /* bg-gray-800 with opacity */
-    border: 1px solid #4A5568; /* border-gray-600 */
-    
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    opacity: 0.2;
-    transition: opacity 0.4s ease-in-out;
-
-    /* Set a max width for blurbs */
-    max-width: 30%; 
-}
-
-.step.is-active {
-    opacity: 1;
-}
-
-/* Step variations */
-.step-left {
-    /* Now that the grid is 1-column, we just
-       align the item to the 'start' (left) */
-    justify-self: start;
-    margin-left: 5%; /* Add padding from the edge */
-}
-.step-right {
-    /* Align this item to the 'end' (right) */
-    justify-self: end;
-    margin-right: 5%; /* Add padding from the edge */
-}
-
-/* Step-full  */
-.step-full {
-    /* Align this item to the 'center' */
-    justify-self: center;
-    max-width: 700px;
-    text-align: center;
-    border: none;
-    background: none;
-    box-shadow: none;
-    opacity: 0.8;
-}
-
-/* Headings inside step-full should be light */
-.step-full h2 {
-    color: #E2E8F0;
-    font-size: 2.25rem; /* This is 36px (Tailwind's text-4xl) */
-    font-weight: 600;   /* This is semibold */
-}
-
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    #side-nav {
-        display: none; /* Hide side nav */
-    }
-    main {
-        padding-left: 0; /* Reset padding */
-        grid-template-columns: 1fr;
-    }
-    #scroller {
-        grid-template-columns: 1fr;
-    }
-    #graphic {
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
-        height: 40vh;
-        top: 10vh;
-    }
-    #scroller {
-        grid-column: 1 / 2;
-        grid-row: 2 / 3;
-    }
-    .step-left, .step-right, .step-full {
-        grid-column: 1 / 2;
-        width: 90%;
-        margin-left: 5%;
-    }
-    .step-full {
-        /* Give full steps a background on mobile for readability */
-        background-color: rgba(45, 55, 72, 0.95);
-    }
-    .step-timeline {
-        width: 95% !important;
-        padding: 10px;
-    }
-    #timeline-container {
-        padding: 30px 10px;
-        min-height: 1500px;
-    }
-}
-
-
-
-/* Special step class for timeline - much wider than regular steps */
-.step-timeline {
-    /* Override step-full constraints */
-    max-width: 95% !important; /* Use most of the available width */
-    width: 95% !important;
-    justify-self: center;
-    text-align: center;
-    border: none;
-    background: none;
-    box-shadow: none;
-    opacity: 1 !important; /* Always visible */
-    margin-bottom: 80vh; /* Add space before next section */
-}
-
-.step-timeline h2 {
-    color: #E2E8F0;
-    font-size: 2.25rem;
-    font-weight: 600;
-    margin-bottom: 50px;
-}
-
-/* TIMELINE STYLING */
-/* Timeline Container */
-#timeline-container {
-    position: relative;
-    max-width: 100%; /* Use full width of parent */
-    width: 100%;
-    margin: 0 auto;
-    padding: 50px 20px;
-    /* Height set dynamically by JavaScript */
-}
-
-/* SVG for the vertical line */
-#timeline-svg {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 100%;
-    z-index: 1;
-}
-
-.timeline-line {
-    stroke: #5a5a5a;
-    stroke-width: 3;
-    fill: none;
-    /* Animation values set by JavaScript */
-}
-
-/* Timeline Events Container */
-#timeline-events {
-    position: relative;
-    z-index: 2;
-    height: 100%; /* Match container height */
-}
-
-/* Individual Event */
-.timeline-event {
-    position: absolute; /* Already set in JS, but reinforce here */
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.timeline-event.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Event Content */
-.event-content {
-    width: 45%;
-    max-width: 500px; /* Prevent text from stretching too wide */
-    padding: 0 40px;
-}
-
-.event-left .event-content {
+/* Dropcap */
+.narrative-block p:first-of-type::first-letter {
     float: left;
-    text-align: right;
-    padding-right: 80px;
+    font-size: 3.8rem;
+    line-height: 0.8;
+    padding-right: 10px;
+    font-weight: bold;
+    color: var(--color-accent);
 }
 
-.event-right .event-content {
-    float: right;
-    text-align: left;
-    padding-left: 80px;
+/* LOWER SANDWICH*/
+.narrative-block-bottom { 
+    /* Container is  WIDE (900px) */
+    max-width: var(--wide-width); 
+    margin: 0 auto 80px auto; 
+    padding: 0 10px; 
 }
 
-/* Circle/Bubble on timeline */
-.timeline-circle {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 40px;
-    height: 40px;
-    background: #4a5568;
-    border: 4px solid #2d3748;
-    border-radius: 50%;
-    z-index: 3;
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.narrative-block-bottom h2, 
+.narrative-block-bottom h3 { 
+    margin-top: 2.5em; 
+    font-size: 2.5rem; /* Larger font to match wider width */
+    color: #fff;
+    width: 100%;
+    max-width: 100%; /* Explicitly allow full width */
+    text-align: center; /* Centered headers usually look best in this layout */
+}
+
+/* Paragraphs & Lists are forced back to NARROW (580px) */
+.narrative-block-bottom p,
+.narrative-block-bottom ul,
+.narrative-block-bottom ol,
+.narrative-block-bottom blockquote { 
+    max-width: var(--text-width); 
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5em; 
+}
+
+
+/* ===============================================
+   MODULAR SECTION LAYOUTS
+   =============================================== */
+
+/* One-column layout for single graphs */
+.section-one-column {
+    max-width: var(--max-width);
+    margin: 0 auto 4rem auto;
+    padding: 0 20px;
+}
+
+/* Two-column layout for side-by-side graphs */
+.section-two-column {
+    max-width: var(--max-width);
+    margin: 0 auto 1rem auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* Graph container - flexible for any chart type */
+.graph-container {
+    width: 100%;
+    min-height: 400px;
+    background: #1A202C;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.timeline-circle.visible {
-    transform: translate(-50%, -50%) scale(1);
+/* Caption styling */
+.graph-caption {
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 10px;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-style: italic;
 }
 
-.timeline-circle::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    background: #e2e8f0;
-    border-radius: 50%;
-    opacity: 0;
-    transition: opacity 0.3s ease 0.3s;
+/* For two-column captions */
+.graph-caption-row {
+    max-width: var(--max-width);
+    margin: 0 auto 3rem auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
 }
 
-.timeline-circle.visible::before {
+/* Responsive: Stack two-column layouts on mobile */
+@media (max-width: 768px) {
+    .section-two-column {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .graph-caption-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+/* OLD Metric Sections - DEPRECATED */
+.metric-section { 
+    padding: 4rem 0; 
+    background: var(--color-section-alt); 
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 4rem;
+}
+
+.metric-section h2 { 
+    text-align: center; 
+    margin-bottom: 3rem; 
+}
+
+.metric-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 4rem; 
+    max-width: var(--max-width); 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    align-items: center; 
+}
+
+.chart-small { 
+    width: 100%; 
+    min-height: 200px; 
+    margin: 1rem 0; 
+}
+
+.map-container { 
+    width: 100%; 
+    height: 400px; 
+    background: #1A202C; 
+    border: 1px solid var(--color-border);
+    border-radius: 4px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.caption {
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* ===============================================
+   4. SCROLLYTELLING ENGINE 
+   =============================================== */
+
+/* Generic scrolly section - can be reused */
+[id^="scrolly-section-"] {
+    position: relative;
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.sticky-graphic {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+    background: var(--color-bg); 
+}
+
+.chart-wrapper {
+    width: 600px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform-origin: center center;
+    will-change: transform;
+    box-shadow: 0 0 50px rgba(0,0,0,0.3);
+    
+
+    transform: scale(2.5); 
+}
+
+.chart-wrapper.is-zoomed {
+
+    transform: scale(2.5); 
+}
+
+.scrolly-steps {
+    position: relative;
+    z-index: 10;
+    margin-top: -50vh;
+    padding-bottom: 50vh;
+    pointer-events: none;
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step {
+    height: 90vh; 
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.step:nth-child(odd) { justify-content: flex-start; }
+.step:nth-child(even) { justify-content: flex-end; }
+
+.step:last-child {
+    margin-bottom: 0 !important; 
+}
+
+/* CARD STYLING */
+.card {
+    background: var(--color-card-bg);
+    color: var(--color-text);
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    text-align: left;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    max-width: 380px; 
+    width: 100%;
+}
+
+.card.is-active {
+    border-color: var(--color-accent);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.card h3 { 
+    margin-bottom: 0.75rem; 
+    font-size: 1.2rem; 
+    font-family: sans-serif; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-accent);
+}
+
+.card p { 
+    font-size: 1rem; 
+    line-height: 1.6; 
+    margin-bottom: 0; 
+    color: #fff;
+}
+
+/* ===============================================
+   5. DATA TABLE SECTION 
+   =============================================== */
+.table-section { 
+    max-width: var(--max-width); 
+    margin: 0 auto 80px auto; 
+    padding: 0 20px; 
+}
+
+.text-container {
+    /* Container is WIDE so headers can expand */
+    max-width: var(--wide-width);
+    margin: 0 auto 2rem auto;
+    text-align: center;
+}
+
+/* Paragraphs constrained inside for article formatting type ish */
+.text-container p {
+    max-width: var(--text-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ensure Headers inside text-container are allowed full width */
+.text-container h1,
+.text-container h2,
+.text-container h3 {
+    max-width: 100%;
+}
+
+.table-controls { 
+    margin-bottom: 1rem; 
+    text-align: right; 
+}
+
+.table-wrapper { 
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+}
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    font-family: sans-serif; 
+    font-size: 0.9rem; 
+    color: var(--color-text);
+}
+
+th { 
+    text-align: left; 
+    background: var(--color-header-bg); 
+    padding: 1rem; 
+    border-bottom: 2px solid var(--color-border); 
+    cursor: pointer; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+td { 
+    padding: 0.75rem 1rem; 
+    border-bottom: 1px solid var(--color-border); 
+}
+
+th:hover { background: #2C3646; }
+
+.btn-secondary {
+    padding: 8px 16px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+.btn-secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+/* ===============================================
+   6. FOOTER
+   =============================================== */
+.site-footer { 
+    background: var(--color-header-bg); 
+    padding: 60px 0; 
+    text-align: center; 
+    border-top: 1px solid var(--color-border); 
+    font-family: sans-serif; 
+    font-size: 0.85rem; 
+    color: var(--color-text-muted); 
+}
+
+/* ===============================================
+   7. (SPLASH SCREEN)
+   =============================================== */
+
+.landing-splash {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Occupies full viewport height */
+    background: #1F2937; /* Deep dark slate (matches image) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* --- Top Bar --- */
+.splash-top {
+    width: 100%;
+    max-width: var(--max-width);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    font-family: sans-serif;
+}
+
+.splash-logos {
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.splash-search {
+    /* Change background from white to dark gray */
+    background: var(--color-section-alt); 
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    width: 250px;
+}
+
+.splash-search input {
+    border: none;
+    outline: none;
+    margin-left: 10px;
+    width: 100%;
+    font-size: 0.85rem;
+    
+    /* Ensure text input matches dark mode */
+    background: transparent;
+    color: var(--color-text); 
+}
+
+
+.splash-search input::placeholder {
+    color: var(--color-text-muted);
     opacity: 1;
 }
-
-/* Year Badge */
-.event-year {
-    font-size: 28px;
-    font-weight: bold;
-    color: #e2e8f0;
-    margin-bottom: 15px;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Title */
-.event-title {
-    font-size: 22px;
-    font-weight: 600;
-    color: #cbd5e0;
-    margin-bottom: 15px;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Description */
-.event-description {
-    font-size: 14px;
-    line-height: 1.8;
-    color: #a0aec0;
-    margin-bottom: 20px;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Read More Button */
-.read-more-btn {
-    display: inline-block;
-    padding: 10px 24px;
-    background: transparent;
-    border: 2px solid #4a5568;
-    color: #cbd5e0;
-    text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Arial', sans-serif;
-    font-weight: 600;
-}
-
-.read-more-btn:hover {
-    background: #4a5568;
-    color: #fff;
-    transform: translateY(-2px);
-}
-
-/* Modal Popup */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.modal-content {
+/* --- Center Content (Grid) --- */
+.splash-center {
     position: relative;
-    background-color: #2d3748;
-    margin: 10% auto;
-    padding: 40px;
-    border: 1px solid #4a5568;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    animation: slideDown 0.3s ease;
+    width: 100%;
+    max-width: 1000px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes slideDown {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+/* The Text Grid: Logo | Title */
+.splash-hero-grid {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    z-index: 1; /* Sits above the graphic */
 }
 
-.close {
-    color: #cbd5e0;
-    float: right;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 20px;
+.splash-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
 }
 
-.close:hover,
-.close:focus {
+.splash-brand .globe-icon {
+    font-size: 3.5rem;
     color: #fff;
+    opacity: 0.9;
 }
 
-#modal-title {
-    color: #e2e8f0;
-    font-size: 28px;
-    margin-bottom: 10px;
-    font-family: 'Arial', sans-serif;
+.splash-brand .brand-name {
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1.1;
+    color: #fff;
+    text-transform: uppercase;
 }
 
-#modal-year {
-    color: #a0aec0;
-    font-size: 18px;
+.vertical-divider {
+    width: 4px;
+    height: 100px; /* Tall white bar */
+    background: #fff;
+    border-radius: 2px;
+}
+
+.splash-title {
+    font-family: sans-serif; /* The image uses a clean sans, not the serif body font */
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #fff;
+    max-width: 500px;
+    line-height: 1.2;
+}
+
+/* --- Yellow Banner --- */
+.splash-info-banner {
+    background: #FCEEB5; /* Pale Yellow */
+    color: #1A202C;
+    padding: 25px 40px;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+.splash-logo-icon {
+    /* 1. Increase height to match the 3-line text block (approx 9rem) */
+    height: 9rem; 
+    width: auto;
+
+    /* 2. Update min-dimensions to match new height */
+    min-width: 9rem;
+    min-height: 9rem;
+    
+    /* 3. Ensure high quality for SVG */
+    display: block;
+}
+
+/* --- CTA Button --- */
+.btn-fly-down {
+    background: #fff;
+    color: #1A202C;
+    padding: 15px 35px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s ease, background 0.2s;
+    margin-bottom: 40px;
+    z-index: 2;
+}
+
+.btn-fly-down:hover {
+    transform: translateY(3px); /* Slight press effect */
+    background: #E2E8F0;
+}
+
+.arrow {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* --- Legal Footer --- */
+.splash-legal {
+    max-width: 800px;
+    text-align: center;
+    color: #718096; /* Muted text */
+    font-size: 0.75rem;
+    line-height: 1.5;
+    font-family: sans-serif;
     margin-bottom: 20px;
-    font-family: 'Arial', sans-serif;
 }
 
-#modal-text {
-    color: #cbd5e0;
-    font-size: 16px;
-    line-height: 1.8;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Responsive Design */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    .event-content {
-        width: 90%;
-        padding: 0 20px !important;
-        text-align: left !important;
+    .splash-hero-grid {
+        flex-direction: column;
+        text-align: center;
     }
-    
-    .event-left .event-content,
-    .event-right .event-content {
-        float: none;
-        margin-left: 60px;
+    .vertical-divider {
+        width: 80px;
+        height: 4px; /* Horizontal on mobile */
+        margin: 10px 0;
     }
-    
-    #timeline-svg {
-        left: 30px;
-    }
-    
-    .timeline-circle {
-        left: 30px;
-    }
+    .splash-brand { flex-direction: column; }
+    .splash-title { font-size: 1.8rem; text-align: center; }
+    .splash-info-banner { font-size: 0.95rem; }
 }

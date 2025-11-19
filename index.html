@@ -3,172 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Meridian Dynamic Report Draft</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Dynamic Report v4 (scrollytelling T_T)</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<!-- TAILWIND CLASSES -->
-<body class="bg-[#203341] text-gray-300 home-is-visible">
+<body>
 
-        <!-- 
-        HERO SECTION 
-        -->
-        <main id="home" class="h-screen flex flex-col items-center justify-center px-6 transition-all duration-500 ease-in-out">
-            <div id="primary-column" class="max-w-4xl w-full flex flex-col items-center gap-10 transition-all duration-500 ease-in-out">
-                
-                <!-- Enlarged logo (h-32) and text (text-5xl) -->
-                <div id="logo-section" class="flex flex-col md:flex-row items-center justify-center gap-6 w-full transition-all duration-500 ease-in-out">
-                    <div class="flex items-center gap-4 flex-shrink-0">
-                        <div class="flex items-center justify-center text-white text-sm">
-                            <img src="images/logo.svg" alt="Project Meridian Globe Logo" class="h-32 w-auto" >
-                        </div>
-                    </div>
-                    <h1 class="text-4xl md:text-5xl font-bold text-white leading-relaxed text-center md:text-left">
-                        Dynamic Report
-                    </h1>
-                </div>
-                
-                <!-- Flex justify-center -->
-                <div id="nav-grid" class="w-full max-w-5xl flex justify-center transition-all duration-500 ease-in-out">
-
-                    <a href="#section-1" class="nav-card block p-6 bg-gray-800/60 border border-gray-700/50 rounded-lg transition-all duration-300 ease-in-out border-2 border-blue-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/30 w-full max-w-md">
-                        <h3 class="text-xl font-semibold text-blue-400 mb-2">Start Exploring</h3>
-                        <p class="text-sm text-gray-300 leading-relaxed">Begin the report</p>
-                    </a>
-
-                </div>
+    <!-- Arushi-style landing page -->
+     <section class="landing-splash" id="landing">
+        <div class="splash-top">
+            <div class="splash-logos">
+                <img src="images/icons_objects/interjust-logo.svg" alt="Interjust Logo" >
+                <span class="logo-divider">|</span>
+               <img src="images/icons_objects/logo.svg" alt="Project Meridian Globe Logo" >
             </div>
-        </main>
-        
-        <!-- 
-            SCROLLYTELLING SITE 
-        -->
-            <!-- Left bav section -->
-        <nav id="side-nav">
-            <ul>
-                <li><a href="#home" data-nav-target="home" class="active-nav">Home</a></li>
-                <li><a href="#section-1" data-nav-target="section-1">What is universal jurisdiction?</a></li>
-                <li><a href="#section-2" data-nav-target="section-2">What types of crimes can states prosecute?</a></li>
-                <li><a href="#section-3" data-nav-target="section-3">Who can be held responsible?</a></li>
-                <li><a href="#section-4" data-nav-target="section-4">What are the different ways states can investigate?</a></li>
-                <li><a href="#section-5" data-nav-target="section-5">How frequently do states apply universal jurisdiction?</a></li>
-            </ul>
-        </nav>
-
-        <main>
-            <div id="graphic">
-                <svg id="chart"></svg>
+            <div class="splash-search">
+                <input type="text" placeholder="Search" disabled>
             </div>
-
-            <div id="scroller">
-                
-                <!-- SECTION 1 (1 Graph) -->
-                <!-- Each "step" renders a new graph, so be sure to paste your graphs in the relevant data-step in script.js -->
-                 <div class="step step-timeline" id="section-1">
-                    <h2>What is universal jurisdiction?</h2>
-                    <div id="timeline-container">
-                        <svg id="timeline-svg"></svg>
-                        <div id="timeline-events"></div>
-                    </div>
-                </div>
-
-
-                <!-- <div class="step step-left" data-step="1">
-                    <p>This is the content for the first section. The graph is in state 1. This text appears on the left.</p>
-                </div>
-                <div class="step step-right">
-                    <p>More content for the first section. This text appears on the right. The graph is still in state 1.</p>
-                </div>
-                 <div class="step step-left">
-                    <p>TBLAH BLAH MORE TEXT.</p>
-                </div> -->
-
-
-                <!-- SECTION 2 (2 Graphs) -->
-                <div class="step step-full" id="section-2" data-nav-section="section-2">
-                    <h2>What types of crimes can States prosecute under universal jurisdiction?</h2>
-                </div>
-                <div class="step step-left" data-step="2">
-                    <p>This is the content for section 2 (Graph 1). As we scrolled to this section, the chart updated to state 2.</p>
-
-                </div>
-                <div class="step step-right" data-step="3">
-                    <p>This is content for section 2 (Graph 2). The chart has now updated to state 3.</p>
-                </div>
-                
-
-                <!-- SECTION 3 (1 Graph) -->
-                <div class="step step-full" id="section-3" data-nav-section="section-3">
-                    <h2>Who can be held responsible under universal jurisdiction?</h2>
-                </div>
-                <div class="step step-right" data-step="4">
-                    <p>This is the content for section 3. The chart has now updated to state 4.</p>
-                </div>
-
-
-                <!-- SECTION 4 (7 Graphs) -->
-                <div class="step step-full" id="section-4" data-nav-section="section-4">
-                    <h2>What are the different ways States can investigate and prosecute crimes that occurred outside their own borders?</h2>
-                </div>
-                <div class="step step-left" data-step="5">
-                    <p>This is the content for section 4 (Graph 1). The chart updates to state 5.</p>
-                </div>
-                <div class="step step-left" data-step="6">
-                    <p>This is the content for section 4 (Graph 2). The chart updates to state 6.</p>
-                </div>
-                <div class="step step-left" data-step="7">
-                    <p>This is the content for section 4 (Graph 3). The chart updates to state 7.</p>
-                </div>
-                <div class="step step-left" data-step="8">
-                    <p>This is the content for section 4 (Graph 4). The chart updates to state 8.</p>
-                </div>
-                <div class="step step-left" data-step="9">
-                    <p>This is the content for section 4 (Graph 5). The chart updates to state 9.</p>
-                </div>
-                <div class="step step-left" data-step="10">
-                    <p>This is the content for section 4 (Graph 6). The chart updates to state 10.</p>
-                </div>
-                <div class="step step-left" data-step="11">
-                    <p>This is the content for section 4 (Graph 7). The chart updates to state 11.</p>
-                </div>
-
-
-                <!-- SECTION 5 (2 Graphs) -->
-                <div class="step step-full" id="section-5" data-nav-section="section-5">
-                    <h2>How frequently do States apply universal jurisdiction?</h2>
-                </div>
-                <div class="step step-right" data-step="12">
-                    <p>This is the content for the final section (Graph 1). The chart updates to state 12.</p>
-                </div>
-                <div class="step step-right" data-step="13">
-                    <p>This is the content for the final section (Graph 2). The chart updates to state 13.</p>
-                </div>
-            </div>
-        </main>
-        <!-- End of scrollytelling main -->
-
-
-        </div> <!-- end of .bg-[#203341]/95 -->
-
-
-
-        <!-- for timeline chart -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modal-title"></h2>
-            <p id="modal-year"></p>
-            <p id="modal-text"></p>
         </div>
-    </div>
+
+            <div class="splash-hero-grid">
+                <div class="splash-brand">
+                   <img class="splash-logo-icon" src="images/icons_objects/logo.svg" alt="Project Meridian Globe Logo">
+                </div>
+                <div class="vertical-divider"></div>
+                <div class="splash-title">
+                    Global Justice Report: National Laws and Universal Accountability
+                </div>
+            </div>
+        </div>
+
+        <div class="splash-info-banner">
+            <p>Explore how countries use their own laws to pursue justice for genocide, war crimes, crimes against humanity, and the crime of aggression...</p>
+        </div>
+
+        <a href="#intro" class="btn-fly-down">
+            Discover More <span class="arrow">→</span>
+        </a>
+
+        <div class="splash-legal">
+            <p>The Universal Justice Project (UJP) is a research project only. Nothing in the UJP or its related analysis should be taken as legal advice. Anyone intending to file a legal action should consult local counsel.</p>
+        </div>
+    </section>
+
+    <main class="page-content">
+
+        <!-- ============================================================ -->
+        <!-- HERO SECTION -->
+        <!-- ============================================================ -->
+        <section class="hero-section" id="intro">
+            <div class="text-container">
+                <p class="series-label">Dynamic Report</p>
+                <h1>Global Justice Report: National Laws and Universal Accountability</h1>
+                <p class="dek">Explore how countries use their own laws to pursue justice for genocide, war crimes, crimes against humanity, and crimes of agression.</p>
+                <div class="byline">A joint project: <a href="#">Berkeley Responsibility Lab x Project Meridian</a></div>
+            </div>
+        </section>
+
+        <section class="narrative-block">
+            <p>While XX U.N. Member States have laws 
+            that allow them to investigate and prosecute crimes committed beyond their own borders, few
+            have actually done so.</p>
+            <p>Project Meridian is dedicated to mobilizing States to use and improve their laws to pursue
+            accountability for the most serious international crimes, so that all survivors can realize
+            meaningful access to justice and perpetrators have nowhere to hide. But, what is Universal Jurisdiction?</p>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 1: SCROLLYTELLING - Focus & Zoom Chart -->
+        <!-- TO MODIFY: Replace initFocusZoomChart() in charts.js -->
+        <!-- ============================================================ -->
+        <section id="scrolly-section-1">
+            
+            <div class="sticky-graphic">
+                <div class="chart-wrapper is-zoomed" id="chart-section-1">
+                    <!-- Chart renders here via charts.js -->
+                </div>
+            </div>
+
+            <div class="scrolly-steps">
+                
+                <div class="step" data-action="zoom" data-target="chart-section-1">
+                    <div class="card">
+                        <h3>1. Principium Focus</h3>
+                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+                    </div>
+                </div>
+
+                <div class="step" data-action="zoom" data-target="chart-section-1">
+                    <div class="card">
+                        <h3>2. Mutatio Visum</h3>
+                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam.</p>
+                    </div>
+                </div>
+
+                <div class="step" data-action="reset" data-target="chart-section-1">
+                    <div class="card">
+                        <h3>3. Amplius Prospectus</h3>
+                        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.</p>
+                    </div>
+                </div>
+
+                <div class="step" data-action="reset" data-target="chart-section-1">
+                    <div class="card">
+                        <h3>4. Conclusio</h3>
+                        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- ============================================================ -->
+        <!-- SECTION 2: 2 GRAPHS (1 Scrollytelling + 1 Static) -->
+        <!-- TO MODIFY: Update chart-section-2a (scrolly) and chart-section-2b (static) in charts.js -->
+        <!-- ============================================================ -->
+        
+        <section class="narrative-block">
+            <h2>Temporis Analysis</h2>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </section>
+
+        <!-- Graph 2A: Scrollytelling -->
+        <section id="scrolly-section-2a">
+            <div class="sticky-graphic">
+                <div class="chart-wrapper" id="chart-section-2a">
+                    <!-- Scrollytelling chart -->
+                </div>
+            </div>
+
+            <div class="scrolly-steps">
+                <div class="step" data-action="zoom" data-target="chart-section-2a">
+                    <div class="card">
+                        <h3>Step 1: Initial View</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
+                    </div>
+                </div>
+
+                <div class="step" data-action="zoom" data-target="chart-section-2a">
+                    <div class="card">
+                        <h3>Step 2: Detailed Focus</h3>
+                        <p>Suspendisse potenti. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
+                    </div>
+                </div>
+
+                <div class="step" data-action="reset" data-target="chart-section-2a">
+                    <div class="card">
+                        <h3>Step 3: Full Context</h3>
+                        <p>Pellentesque in ipsum id orci porta dapibus. Vestibulum ac diam sit amet quam vehicula elementum.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="narrative-block">
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+        </section>
+
+        <!-- Graph 2B: Static -->
+        <section class="section-one-column">
+            <div class="graph-container" id="chart-section-2b">
+                <!-- Static chart renders here -->
+            </div>
+            <p class="graph-caption">Figure 2B: Regional Distribution Analysis</p>
+        </section>
+
+        <section class="narrative-block-bottom">
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 3: 1 GRAPH (Static) -->
+        <!-- TO MODIFY: Update chart-section-3 in charts.js -->
+        <!-- ============================================================ -->
+        
+        <section class="narrative-block">
+            <h2>Tertius Sectio</h2>
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+            <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+        </section>
+
+        <section class="section-one-column">
+            <div class="graph-container" id="chart-section-3">
+                <!-- Static chart -->
+            </div>
+            <p class="graph-caption">Figure 3: Comprehensive Data Overview</p>
+        </section>
+
+         <section class="narrative-block-bottom">
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+            <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+        </section>
+
+
+        <!-- ============================================================ -->
+        <!-- SECTION 4: 7 GRAPHS (3 Scrollytelling + 4 Static) -->
+        <!-- TO MODIFY: Update chart-section-4a through 4g in charts.js -->
+        <!-- ============================================================ -->
+        
+        <section class="narrative-block">
+            <h2>Quartus Sectio: Deep Dive</h2>
+            <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+        </section>
+
+        <!-- Graph 4A: Scrollytelling -->
+        <section id="scrolly-section-4a">
+            <div class="sticky-graphic">
+                <div class="chart-wrapper" id="chart-section-4a">
+                    <!-- Scrollytelling chart -->
+                </div>
+            </div>
+
+            <div class="scrolly-steps">
+                <div class="step" data-action="zoom" data-target="chart-section-4a">
+                    <div class="card">
+                        <h3>Phase 1</h3>
+                        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet.</p>
+                    </div>
+                </div>
+
+                <div class="step" data-action="reset" data-target="chart-section-4a">
+                    <div class="card">
+                        <h3>Phase 2</h3>
+                        <p>Ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="narrative-block">
+            <p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+        </section>
+
+        <!-- Graphs 4B & 4C: Two-column static -->
+        <section class="section-two-column">
+            <div class="graph-container" id="chart-section-4b">
+                <!-- Static chart -->
+            </div>
+            <div class="graph-container" id="chart-section-4c">
+                <!-- Static chart -->
+            </div>
+        </section>
+        <div class="graph-caption-row">
+            <p class="graph-caption">Figure 4B: Metric Distribution</p>
+            <p class="graph-caption">Figure 4C: Temporal Trends</p>
+        </div>
+
+        <section class="narrative-block">
+            <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+        </section>
+
+        <!-- Graph 4D: Scrollytelling -->
+        <section id="scrolly-section-4d">
+            <div class="sticky-graphic">
+                <div class="chart-wrapper" id="chart-section-4d">
+                    <!-- Scrollytelling chart -->
+                </div>
+            </div>
+
+            <div class="scrolly-steps">
+                <div class="step" data-action="zoom" data-target="chart-section-4d">
+                    <div class="card">
+                        <h3>Deep Analysis Begin</h3>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+                    </div>
+                </div>
+
+                <div class="step" data-action="zoom" data-target="chart-section-4d">
+                    <div class="card">
+                        <h3>Key Findings</h3>
+                        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
+                    </div>
+                </div>
+
+                <div class="step" data-action="reset" data-target="chart-section-4d">
+                    <div class="card">
+                        <h3>Synthesis</h3>
+                        <p>Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Graph 4E: Static -->
+        <section class="section-one-column">
+            <div class="graph-container" id="chart-section-4e">
+                <!-- Static chart -->
+            </div>
+            <p class="graph-caption">Figure 4E: Comparative Analysis</p>
+        </section>
+
+        <section class="narrative-block">
+            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+        </section>
+
+        <!-- Graph 4F: Scrollytelling -->
+        <section id="scrolly-section-4f">
+            <div class="sticky-graphic">
+                <div class="chart-wrapper" id="chart-section-4f">
+                    <!-- Scrollytelling chart -->
+                </div>
+            </div>
+
+            <div class="scrolly-steps">
+                <div class="step" data-action="zoom" data-target="chart-section-4f">
+                    <div class="card">
+                        <h3>Final Perspective: Part 1</h3>
+                        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+                    </div>
+                </div>
+
+                <div class="step" data-action="reset" data-target="chart-section-4f">
+                    <div class="card">
+                        <h3>Final Perspective: Part 2</h3>
+                        <p>Nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Graph 4G: Static -->
+        <section class="section-one-column">
+            <div class="graph-container" id="chart-section-4g">
+                <!-- Static chart -->
+            </div>
+            <p class="graph-caption">Figure 4G: Summary Statistics</p>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 5: 2 GRAPHS (Both Static, Two-column layout) -->
+        <!-- TO MODIFY: Update chart-section-5a and chart-section-5b in charts.js -->
+        <!-- ============================================================ -->
+        
+        <section class="narrative-block">
+            <h2>Quintus Sectio: Conclusions</h2>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+            <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </section>
+
+        <section class="section-two-column">
+            <div class="graph-container" id="chart-section-5a">
+                <!-- Static chart -->
+            </div>
+            <div class="graph-container" id="chart-section-5b">
+                <!-- Static chart -->
+            </div>
+        </section>
+        <div class="graph-caption-row">
+            <p class="graph-caption">Figure 5A: Final Metric Overview</p>
+            <p class="graph-caption">Figure 5B: Future Projections</p>
+        </div>
+
+        <section class="narrative-block">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- DATA TABLE (maybe we put raw data here?)
+        <!-- ============================================================ -->
+        <section class="table-section">
+            <div class="text-container">
+                <h2>Tabula Datorum</h2>
+                <p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur.</p>
+            </div>
+            
+            <div class="table-controls">
+                <button id="reset-sort" class="btn-secondary">Reset Ordinem</button>
+            </div>
+            
+            <div class="table-wrapper">
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="name">Regio</th>
+                            <th class="sortable" data-sort="metric1">Metrica A</th>
+                            <th class="sortable" data-sort="metric2">Metrica B</th>
+                            <th class="sortable" data-sort="score">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="copyright">&copy; Project Meridian</p>
+        </div>
+    </footer>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!-- 
-      Load charts.js first, so its functions are defined 
-      before script.js tries to call them.
-    -->
     <script src="charts.js"></script>
-    <script src="script.js"></script>
-    <script src="timeline.js"></script>
+    <script src="scripts.js"></script>
+
 </body>
 </html>
