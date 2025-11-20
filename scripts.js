@@ -6,6 +6,46 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ===============================================
+       SCROLL SPY (NAV HIGHLIGHT)
+       =============================================== */
+    
+    // 1. Select all nav links and the sections they point to
+    const navLinks = document.querySelectorAll('.side-nav a');
+    // This selects any section with an ID starting with "section-"
+    const contentSections = document.querySelectorAll('section[id^="section-"]');
+
+    // 2. Set up the observer options
+    const spyOptions = {
+        root: null,
+        // This weird margin creates a line across the exact center of the screen.
+        // The observer triggers ONLY when a section crosses this center line.
+        rootMargin: '-50% 0px -50% 0px', 
+        threshold: 0
+    };
+
+    const spyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                
+                // Clean up: Remove 'active-nav' from ALL links first
+                navLinks.forEach(link => link.classList.remove('active-nav'));
+
+                // Highlight: Add 'active-nav' to the matching link
+                const activeLink = document.querySelector(`.side-nav a[href="#${id}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active-nav');
+                }
+            }
+        });
+    }, spyOptions);
+
+    // 3. Start watching the sections
+    contentSections.forEach(section => {
+        spyObserver.observe(section);
+    });
+    
+    /* ===============================================
     GLOSSARY TO SIDEBAR TRANSITION LOGIC
     =============================================== */
     const glossarySection = document.getElementById('glossary');

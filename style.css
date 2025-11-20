@@ -1013,3 +1013,15 @@ th:hover { background: #2C3646; }
 .side-nav a:hover::after {
     opacity: 1;
 }
+
+/* STATE: Active (Current Section) */
+.side-nav a.active-nav {
+    color: #63B3ED;                       /* Blue text */
+    background: rgba(99, 179, 237, 0.1);  /* Faint blue background */
+    border-left: 3px solid #63B3ED;       /* Optional: A blue bar on the left */
+}
+
+/* Ensure the number stays highlighted too */
+.side-nav a.active-nav .nav-num {
+    color: #63B3ED;
+}
