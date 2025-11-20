@@ -1,0 +1,250 @@
+{
+    "title": {
+        "background": {
+          "url": "images/timeline/icc_hague_UN_photo.jpg",
+          "caption": "Permanent Premises of the International Criminal Court.",
+          "credit": "Credit: UN Photo/Rick Bajornas, 19 April 2016, The Hague, Netherlands"
+        },
+        "text": {
+          "headline": "What is universal jurisdiction?",
+          "text": "<p>Explore the development of universal jurisdiction through key events in international law and justice.</p>"
+        }
+    },
+    "events": [
+      {
+        "media": {
+          "url": "images/timeline/Geneva_1949.jpg",
+          "caption": "Signing of the Geneva Convention",
+          "credit": "Credit:<a href='https://www.flickr.com/people/28884294@N04'>British Red Cross</a>"
+        },
+        "start_date": {
+          "month": "8",
+          "day": "12",
+          "year": "1949"
+        },
+        "text": {
+          "headline": "Geneva Conventions adopted",
+          "text": "<p>The Geneva Conventions are adopted, creating the basis for modern international humanitarian law and obligating States Parties to prosecute or extradite suspected war criminals for “grave breaches.” This marks the first inclusion of the principal of universal jurisdiction in an international treaty.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "images/timeline/convention_against_torture1984.jpg",
+          "caption": "February 1982 - Thirty-eighth Regular Session of the United Nations Commission on Human Rights, Geneva, Switzerland: Mr. Ivan Garvalov (Bulgaria) on left, and Carlos Calero-Rodrigues (Brazil), outgoing Chairman.",
+          "credit": "Credit:<a href='https://legal.un.org/avl/ha/catcidtp/catcidtp.html'>UN Audiovisual Library of International Law</a>"
+        },
+        "start_date": {
+          "month": "12",
+          "day": "10",
+          "year": "1984"
+        },
+        "text": {
+          "headline": "Convention against Torture adopted",
+          "text": "<p>The Convention against Torture is adopted, obligating States Parties to prosecute or extradite suspected torturers.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "images/timeline/cicc1998.jpg",
+          "caption": "1998: CICC applauds Rome Statute adoption",
+          "credit": "Credit:<a href='https://www.flickr.com/photos/42977506@N08/4601640548'>Coalition for the ICCo</a>"
+        },
+        "start_date": {
+          "month": "7",
+          "day": "17",
+          "year": "1998"
+        },
+        "text": {
+          "headline": "Rome Statute adopted",
+          "text": "<p>The Rome Statute is adopted by 120 States, establishing the International Criminal Court (ICC) and granting the Court jurisdiction over genocide, crimes against humanity, and war crimes.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "images/timeline/pinochet1998.JPG",
+          "caption": "Augusto Pinochet",
+          "credit": "Credit:<a href='https://commons.wikimedia.org/w/index.php?curid=16269957'>From the Political History Archive of Biblioteca del Congreso Nacional de Chile</a>"
+        },
+        "start_date": {
+          "month": "10",
+          "day": "16",
+          "year": "1998"
+        },
+        "text": {
+          "headline": "Arrest of Augusto Pinochet",
+          "text": "<p>British police arrest former Chilean dictator Augusto Pinochet in London for crimes committed during his 17-year rule, based on an international warrant linked to a case launched in Spain under the principle of universal jurisdiction. This marks the first time a current or former head of State is apprehended abroad for alleged international crimes.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://vimeo.com/1035235440",
+          "caption": "Documentary: The Things We Don't Say: children of the Rwandan genocide.",
+          "credit": "Credit:<a href='https://vimeo.com/1035235440'>The Guardian</a>"
+        },
+        "start_date": {
+          "month": "4",
+          "day": "30",
+          "year": "1999"
+        },
+        "text": {
+          "headline": "Conviction of Fulgence Niyonteze",
+          "text": "<p>A Swiss court convicts Rwandan national Fulgence Niyonteze of war crimes, marking the first trial and conviction related to the Rwandan genocide by a non-Rwandan national court.</p>"
+        }
+      },
+      {
+    "start_date": {
+      "month": "1",
+      "day": "27",
+      "year": "2001"
+    },
+    "text": {
+      "headline": "Princeton Principles finalized",
+      "text": "<p>The Princeton Principles on Universal Jurisdiction are finalized, creating a set of consensus guidelines for the continued development and effective exercise of universal jurisdiction by national courts.</p>"
+    }
+    },
+      {
+        "background": {
+          "url": "images/timeline/un_general2009.jpg",
+          "caption": "UN General Assembly hall",
+          "credit": "Credit:<a href='https://commons.wikimedia.org/w/index.php?curid=4806869'>Patrick Gruban</a>"
+        },
+        "start_date": {
+          "month": "12",
+          "day": "16",
+          "year": "2009"
+        },
+        "text": {
+          "headline": "UN General Assembly Resolution",
+          "text": "<p>The UN General Assembly adopts a resolution at its 64th session asking the Secretary General to invite Member States to submit information on the scope and application of the principle of universal jurisdiction and assigning that issue to the Sixth Committee for further consideration.</p>"
+        }
+      },
+      {
+        "background": {
+          "url": "images/timeline/kampala_2010.jpg",
+          "caption": "An event on Promoting ratification and implementation of the Kampala Amendments to the Rome Statute.",
+          "credit": "Credit:<a href='https://www.flickr.com/photos/42977506@N08/8200360974'>Coalition for the ICC</a>"
+        },
+        "start_date": {
+          "month": "6",
+          "day": "11",
+          "year": "2010"
+        },
+        "text": {
+          "headline": "Kampala Amendments adopted",
+          "text": "<p>The Kampala Amendments are adopted, defining and granting the ICC jurisdiction over the crime of aggression.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "images/timeline/alain_2014.jpg",
+          "caption": "Alain Gauthier of the Collective of Civil Parties for Rwanda at the opening of Pascal Simbikangwa's",
+          "credit": "Credit:<a href='https://www.flickr.com/photos/130830378@N08/15694318254'>matelo971</a>"
+        },
+        "start_date": {
+          "month": "3",
+          "day": "14",
+          "year": "2014"
+        },
+        "text": {
+          "headline": "Conviction of Pascal Simbikangwa",
+          "text": "<p>A French court convicts Rwandan national Pascal Simbikangwa of genocide and complicity in crimes against humanity for his role as the head of Rwanda’s Central Intelligence Service, marking the first trial and conviction in France of a Rwandan genocide suspect and the first case referred by France’s specialized unit for the prosecution of international crimes.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "images/timeline/habre2016.png",
+          "caption": "Manuel Marín, Hissène Habré and Jacques Delors (from left to right) - 1989",
+          "credit": "Credit:<a href='https://commons.wikimedia.org/w/index.php?curid=169594303'>EC Audiovisual Service</a>"
+        },
+        "start_date": {
+          "month": "5",
+          "day": "20",
+          "year": "2016"
+        },
+        "text": {
+          "headline": "Conviction of Hissène Habré",
+          "text": "<p>The Extraordinary African Chambers in Senegal convicts former Chadian President Hissène Habré of crimes against humanity and war crimes, marking the first universal jurisdiction prosecution in Africa and the first conviction of a former head of State by an African court for crimes against humanity.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://www.youtube.com/watch?v=3I1YUPjOMCw",
+          "caption": "British Public Broadcast: Former Syrian official convicted by German court in first case of its kind",
+          "credit": "Credit:<a href='https://www.youtube.com/watch?v=3I1YUPjOMCw'>Channel 4 UK</a>"
+        },
+        "start_date": {
+          "month": "2",
+          "day": "24",
+          "year": "2021"
+        },
+        "text": {
+          "headline": "Conviction of Eyad al-Gharib",
+          "text": "<p>A German court convicts Syrian national and Assad regime member Eyad al-Gharib of aiding and abetting crimes against humanity, marking the first conviction worldwide for State-sponsored crimes against humanity in Syria.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://www.youtube.com/watch?v=0mIZXu83bOQ",
+          "caption": "Documentary: Seeking Justice for the Yezidi Genocide: Seven Years Later",
+          "credit": "Credit:<a href='https://www.youtube.com/watch?v=0mIZXu83bOQ'>United States Holocause Museum</a>"
+        },
+        "start_date": {
+          "month": "11",
+          "day": "20",
+          "year": "2021"
+        },
+        "text": {
+          "headline": "Conviction of Taha Al-Jumailly",
+          "text": "<p>A German court convicts Iraqi national and former ISIS member Taha Al-Jumailly of genocide, crimes against humanity, and war crimes, marking the first genocide conviction worldwide of an ISIS member.</p>"
+        }
+      },
+      {
+        "background": {
+          "url": "images/timeline/ljubljana_2024.jpg",
+          "caption": "Signing conference Ljubljana-The Hague Convention in the Peace Palace",
+          "credit": "Credit:<a href='http://www.flickr.com/photos/11447043@N00/418180903/'> Netherlands Ministry of Foreign Affairs / Valerie Kuypers & Martijn Beekman</a>"
+        },
+        "start_date": {
+          "month": "2",
+          "day": "14",
+          "year": "2024"
+        },
+        "text": {
+          "headline": "Ljubljana-The Hague Convention signed",
+          "text": "<p>The Ljubljana-The Hague Convention is signed by 32 States, establishing new standards for inter-State cooperation to facilitate the investigation and prosecution of the most serious international crimes.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://www.youtube.com/watch?v=ult40D98uAY",
+          "caption": "Former Gambia Minister Ousman Sonko on trial for crimes against humanity",
+          "credit": "Credit:<a href='https://www.youtube.com/watch?v=ult40D98uAY'>France 24 English</a>"
+        },
+        "start_date": {
+          "month": "5",
+          "day": "15",
+          "year": "2024"
+        },
+        "text": {
+          "headline": "Conviction of Ousman Sonko",
+          "text": "<p>A Swiss court convicts former Gambian Minister of the Interior Ousman Sonko of crimes against humanity, making him the highest-ranking State official prosecuted under universal jurisdiction in a European court to date.</p>"
+        }
+      },
+      {
+        "media": {
+          "url": "https://www.youtube.com/watch?v=mG1zBs7TJEQ",
+          "caption": "Helsinki Court Convicts Russian Of War Crimes In Ukraine During 2014",
+          "credit": "Credit:<a href='https://www.rferl.org/a/ukraine-russia-far-right-militia-war-crimes-donbas-helsinki-trial-conviction-life-sentence-torden-petrovsky/33347881.html'>Radio Free Europe/Radio Liberty</a>>"
+        },
+        "start_date": {
+          "month": "3",
+          "day": "14",
+          "year": "2025"
+        },
+        "text": {
+          "headline": "Conviction of Yan Petrovsky",
+          "text": "<p>A Finnish court convicts Russian national and far-right mercenary leader Yan Petrovsky of war crimes committed by mercenaries under his command in Luhansk, eastern Ukraine, marking the first conviction under universal jurisdiction worldwide for war crimes committed in Ukraine.</p>"
+        }
+      }
+    ]
+}
