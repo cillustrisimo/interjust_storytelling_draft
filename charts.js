@@ -1044,8 +1044,8 @@ function initDataTable() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Initializing all charts...");
     
-    // SECTION 1
-    createChart_Section1('chart-section-1');
+    // SECTION 1 (UNCOMMENT IF WE WANT A DIFF TIMELINE)
+    // createChart_Section1('chart-section-1');
     
     // SECTION 2
     createChart_Section2A('chart-section-2a');

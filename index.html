@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Report v4 (scrollytelling T_T)</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Styling sheet for timeline -->
+    <link title="timeline-styles" rel="stylesheet" href="timeline3/css/timeline.css">
 </head>
 <body>
 
@@ -36,7 +39,7 @@
             <p>Explore how countries use their own laws to pursue justice for genocide, war crimes, crimes against humanity, and the crime of aggression...</p>
         </div>
 
-        <a href="#intro" class="btn-fly-down">
+        <a href="#glossary" class="btn-fly-down">
             Discover More <span class="arrow">→</span>
         </a>
 
@@ -45,12 +48,93 @@
         </div>
     </section>
 
+     <!-- ============================================================ -->
+        <!-- GLOSSARY AND NAV DEFINITION SECTION -->
+        <!-- ============================================================ -->
+
+<section id="glossary" class="glossary-section">
+        <div class="glossary-container">
+            
+            <div class="glossary-left">
+                <h2 class="glossary-big-title">GLOSSARY</h2>
+                <p class="glossary-subtitle">Navigate the report sections</p>
+            </div>
+
+            <div class="glossary-right">
+                <a href="#section-1" class="glossary-list-item">
+                    <span class="g-num">01</span>
+                    <span class="g-text">What is Universal Jurisdiction?</span>
+                    <span class="g-arrow">→</span>
+                </a>
+
+                <a href="#section-2" class="glossary-list-item">
+                    <span class="g-num">02</span>
+                    <span class="g-text">Which states can prosecute globally?</span>
+                    <span class="g-arrow">→</span>
+                </a>
+
+                <a href="#section-3" class="glossary-list-item">
+                    <span class="g-num">03</span>
+                    <span class="g-text">Who can be held responsible?</span>
+                    <span class="g-arrow">→</span>
+                </a>
+
+                <a href="#section-4" class="glossary-list-item">
+                    <span class="g-num">04</span>
+                    <span class="g-text">How states pursue crimes beyond their borders</span>
+                    <span class="g-arrow">→</span>
+                </a>
+
+                <a href="#section-5" class="glossary-list-item">
+                    <span class="g-num">05</span>
+                    <span class="g-text">How often states apply universal jurisdiction</span>
+                    <span class="g-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <nav id="side-nav" class="side-nav">
+        <ul>
+            <li>
+                <a href="#section-1" data-tooltip="FILLER TEXT">
+                    <span class="nav-num">01</span>
+                    <span class="nav-title">What is Universal Jurisdiction?</span>
+                </a>
+            </li>
+            <li>
+                <a href="#section-2" data-tooltip="FILLER TEXT">
+                    <span class="nav-num">02</span>
+                    <span class="nav-title">Which states can prosecute globally?</span>
+                </a>
+            </li>
+            <li>
+                <a href="#section-3" data-tooltip="FILLER TEXT">
+                    <span class="nav-num">03</span>
+                    <span class="nav-title">Who can be held responsible?</span>
+                </a>
+            </li>
+            <li>
+                <a href="#section-4" data-tooltip="FILLER TEXT">
+                    <span class="nav-num">04</span>
+                    <span class="nav-title">How states pursue crimes beyond their borders</span>
+                </a>
+            </li>
+            <li>
+                <a href="#section-5" data-tooltip="FILLER TEXT">
+                    <span class="nav-num">05</span>
+                    <span class="nav-title">How often states apply universal jurisdiction</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
     <main class="page-content">
 
         <!-- ============================================================ -->
         <!-- HERO SECTION -->
         <!-- ============================================================ -->
-        <section class="hero-section" id="intro">
+        <section class="hero-section" id="section-1">
             <div class="text-container">
                 <p class="series-label">Dynamic Report</p>
                 <h1>Global Justice Report: National Laws and Universal Accountability</h1>
@@ -69,56 +153,23 @@
         </section>
 
         <!-- ============================================================ -->
-        <!-- SECTION 1: SCROLLYTELLING - Focus & Zoom Chart -->
+        <!-- SECTION 1: TIMELINE CHART -->
         <!-- TO MODIFY: Replace initFocusZoomChart() in charts.js -->
         <!-- ============================================================ -->
-        <section id="scrolly-section-1">
-            
-            <div class="sticky-graphic">
-                <div class="chart-wrapper is-zoomed" id="chart-section-1">
-                    <!-- Chart renders here via charts.js -->
-                </div>
-            </div>
 
-            <div class="scrolly-steps">
-                
-                <div class="step" data-action="zoom" data-target="chart-section-1">
-                    <div class="card">
-                        <h3>1. Principium Focus</h3>
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
-                    </div>
-                </div>
-
-                <div class="step" data-action="zoom" data-target="chart-section-1">
-                    <div class="card">
-                        <h3>2. Mutatio Visum</h3>
-                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam.</p>
-                    </div>
-                </div>
-
-                <div class="step" data-action="reset" data-target="chart-section-1">
-                    <div class="card">
-                        <h3>3. Amplius Prospectus</h3>
-                        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.</p>
-                    </div>
-                </div>
-
-                <div class="step" data-action="reset" data-target="chart-section-1">
-                    <div class="card">
-                        <h3>4. Conclusio</h3>
-                        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
-                    </div>
-                </div>
-
-            </div>
+        <section id="timeline-section">
+            <div id="timeline-embed" style="width: 100%; height: 100%;"></div>
         </section>
+
+        <!-- For the convention against torture image: is it legal to use?
+        https://legal.un.org/avl/terms.html -->
         
         <!-- ============================================================ -->
         <!-- SECTION 2: 2 GRAPHS (1 Scrollytelling + 1 Static) -->
         <!-- TO MODIFY: Update chart-section-2a (scrolly) and chart-section-2b (static) in charts.js -->
         <!-- ============================================================ -->
         
-        <section class="narrative-block">
+        <section class="narrative-block" id="section-2">
             <h2>Temporis Analysis</h2>
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
         </section>
@@ -176,7 +227,7 @@
         <!-- TO MODIFY: Update chart-section-3 in charts.js -->
         <!-- ============================================================ -->
         
-        <section class="narrative-block">
+        <section class="narrative-block" id="section-3">
             <h2>Tertius Sectio</h2>
             <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
             <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
@@ -200,7 +251,7 @@
         <!-- TO MODIFY: Update chart-section-4a through 4g in charts.js -->
         <!-- ============================================================ -->
         
-        <section class="narrative-block">
+        <section class="narrative-block" id="section-4">
             <h2>Quartus Sectio: Deep Dive</h2>
             <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
         </section>
@@ -334,7 +385,7 @@
         <!-- TO MODIFY: Update chart-section-5a and chart-section-5b in charts.js -->
         <!-- ============================================================ -->
         
-        <section class="narrative-block">
+        <section class="narrative-block" id="section-5">
             <h2>Quintus Sectio: Conclusions</h2>
             <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
             <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
@@ -393,9 +444,35 @@
         </div>
     </footer>
 
+    <!-- d3js for graphs -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- homebrew js for charts (charts.js), and site nav functionality (scripts.js) -->
     <script src="charts.js"></script>
     <script src="scripts.js"></script>
+
+    <!-- Scripting for timeline.js -->
+    <script src="timeline3/js/timeline.js"></script>
+
+    <!-- initialize timeline chart -->
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            var additionalOptions = {
+                // DELETE or COMMENT OUT the script_path line
+                // script_path: 'timeline3/js/', 
+                
+                // You can keep other options if you need them, 
+                // otherwise this variable can be empty.
+                language: 'en'
+                // Optional: set start_at_slide if needed
+                // start_at_slide: 0
+            }
+
+            // 'timeline-embed' matches the ID of the div above
+            // 'timeline3.json' is the file in the same directory
+            var timeline = new TL.Timeline('timeline-embed', 'timeline3.json', additionalOptions);
+        });
+    </script>
 
 </body>
 </html>

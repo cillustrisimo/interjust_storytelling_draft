@@ -4,6 +4,40 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    /* ===============================================
+    GLOSSARY TO SIDEBAR TRANSITION LOGIC
+    =============================================== */
+    const glossarySection = document.getElementById('glossary');
+    const sideNav = document.getElementById('side-nav');
+
+    if (glossarySection && sideNav) {
+        const glossaryObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Logic: If the glossary is NO LONGER intersecting 
+                // and we are below it (boundingClientRect.top is negative), show sidebar.
+                const isBelow = entry.boundingClientRect.top < 0;
+                
+                if (!entry.isIntersecting && isBelow) {
+                    sideNav.classList.add('is-visible');
+                } else {
+                    sideNav.classList.remove('is-visible');
+                }
+            });
+        }, {
+            root: null,
+            /* CHANGED: 
+               -100px at the top creates a "buffer zone". 
+               The observer considers the glossary "invisible" 
+               once it enters the top 100px of the screen. 
+               This ensures the sidebar triggers trigger BEFORE 
+               the glossary is 100% gone. */
+            rootMargin: "-100px 0px 0px 0px", 
+            threshold: 0 
+        });
+
+        glossaryObserver.observe(glossarySection);
+    }
     
     /* ===============================================
        SCROLLYTELLING LOGIC 

@@ -727,3 +727,289 @@ th:hover { background: #2C3646; }
     .splash-title { font-size: 1.8rem; text-align: center; }
     .splash-info-banner { font-size: 0.95rem; }
 }
+
+/* ===============================================
+   TIMELINE SECTION 
+   =============================================== */
+#timeline-section {
+    /* 1. Height*/
+    height: 900px;
+
+    /* 2. Width: "Breakout" Logic 
+       This forces the timeline to be 85% of the screen width, 
+       regardless of the parent container's size. */
+    width: 85vw;              
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -42.5vw;     /* Pulls it left by half the width (85 / 2) */
+    margin-right: -42.5vw;
+    
+    margin-bottom: 4rem;
+}
+
+/* Mobile: Reset to fit the phone screen normally */
+@media (max-width: 768px) {
+    #timeline-section {
+        height: 600px; 
+        width: 100%;
+        left: auto;
+        right: auto;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+
+/* ===============================================
+   GLOSSARY SECTION STYLES (Split Layout)
+   =============================================== */
+.glossary-section {
+    background-color: var(--color-bg); /* Matches site background */
+    /* Force full screen height so Hero is not visible */
+    min-height: 100vh; 
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 5%; /* 5% padding on sides */
+    position: relative;
+    z-index: 10; /* Ensures it sits cleanly on top */
+}
+
+.glossary-container {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: row; /* Side by Side */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+}
+
+/* --- Left Side: Typography --- */
+.glossary-left {
+    flex: 1;
+    position: sticky;
+    top: 4rem;
+}
+
+.glossary-big-title {
+    font-family: var(--font-head);
+    font-size: 5rem; /* HUGE text */
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 1rem;
+}
+
+.glossary-subtitle {
+    font-family: sans-serif;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
+/* --- Right Side: List --- */
+.glossary-right {
+    flex: 1.5; /* Right side takes slightly more space */
+    display: flex;
+    flex-direction: column;
+}
+
+.glossary-list-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between; /* Pushes arrow to far right */
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* The Last border at bottom */
+.glossary-list-item:last-child {
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Number (01, 02...) */
+.g-num {
+    font-family: monospace;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-right: 2rem;
+    transition: color 0.3s;
+}
+
+/* Title Text */
+.g-text {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    font-weight: 400;
+    flex-grow: 1; /* Takes up middle space */
+}
+
+/* Arrow */
+.g-arrow {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+    color: #63B3ED;
+    font-size: 1.5rem;
+}
+
+/* --- Hover Effects --- */
+.glossary-list-item:hover {
+    padding-left: 15px; /* Indent slightly on hover */
+    color: #63B3ED; /* Light Blue Highlight */
+}
+
+.glossary-list-item:hover .g-num {
+    color: #63B3ED;
+}
+
+.glossary-list-item:hover .g-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 900px) {
+    .glossary-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .glossary-big-title {
+        font-size: 3.5rem;
+    }
+    
+    .glossary-left {
+        position: static; /* Remove sticky on mobile */
+        margin-bottom: 2rem;
+    }
+}
+/* ===============================================
+   SIDEBAR NAVIGATION STYLES
+   =============================================== */
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: #1A202C; /* Very Dark Background */
+    width: 60px; /* Collapsed width */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    overflow: hidden;
+    border-right: 1px solid var(--color-border);
+    
+    /* Hidden by default (until scrolled past glossary) */
+    opacity: 0; 
+    pointer-events: none;
+}
+
+/* When JS adds 'visible', it appears */
+.side-nav.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Expand on Hover */
+.side-nav:hover {
+    width: 280px; 
+}
+
+.side-nav ul {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+}
+
+.side-nav li {
+    width: 100%;
+}
+
+.side-nav a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px; 
+    text-decoration: none;
+    color: var(--color-text-muted);
+    
+    white-space: normal; 
+    
+    transition: color 0.2s;
+    position: relative;
+}
+
+.side-nav a:hover {
+    color: #63B3ED;
+    background: rgba(255,255,255,0.05);
+}
+
+/* The Number (Always Visible) */
+.nav-num {
+    font-family: monospace;
+    color: #63B3ED;
+    font-weight: bold;
+    margin-right: 20px;
+    min-width: 20px;
+}
+
+/* The Title (Visible only on hover/expand) */
+.nav-title {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    
+    /* Formatting for wrapped text */
+    display: block;       /* Ensures it fills space */
+    line-height: 1.2;     /* Tighter spacing for multi-line titles */
+    font-size: 0.9rem;    /* readable size */
+    
+    /* Smooth Animation Trick 
+       This forces the browser to calculate the text layout 
+       as if it's already expanded, preventing "jittery" 
+       reflows while the sidebar opens. */
+    min-width: 180px;     
+}
+
+.side-nav:hover .nav-title {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Tooltip Logic (Appears on right) */
+.side-nav a::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 100%; /* Push to the right of the navbar */
+    top: 50%;
+    transform: translateY(-50%);
+    background: #63B3ED;
+    color: #1A202C;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    margin-left: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.side-nav a:hover::after {
+    opacity: 1;
+}
