@@ -91,7 +91,11 @@
           "text": "<p>A Swiss court convicts Rwandan national Fulgence Niyonteze of war crimes, marking the first trial and conviction related to the Rwandan genocide by a non-Rwandan national court.</p>"
         }
       },
-      {
+      {"background": {
+          "url": "images/timeline/princeton_2001.jpg",
+          "caption": "Princeton School of Public and International Affairs (where the principles were finalized)",
+          "credit": "Credit:<a href='https://www.flickr.com/photos/12357841@N02/50088621441'>Paul VanDerWerf</a>"
+        },
     "start_date": {
       "month": "1",
       "day": "27",
