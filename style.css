@@ -894,93 +894,95 @@ th:hover { background: #2C3646; }
         margin-bottom: 2rem;
     }
 }
-
 /* ===============================================
-   SIDEBAR NAVIGATION STYLES 
+   SIDEBAR NAVIGATION STYLES
    =============================================== */
 .side-nav {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
-    background: #1A202C; 
+    background: #1A202C; /* Very Dark Background */
     width: 60px; /* Collapsed width */
     z-index: 1000;
-    
-    /* Flex Layout */
     display: flex;
-    flex-direction: column; 
-    
-    padding-top: 20px; 
-    padding-bottom: 0; /* Remove bottom padding to let buttons sit flush if needed */
-
+    align-items: center;
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-    overflow: hidden; /* Hides long text when collapsed */
+    overflow: hidden;
     border-right: 1px solid var(--color-border);
     
-    /* Hidden by default (handled by scripts.js) */
+    /* Hidden by default (until scrolled past glossary) */
     opacity: 0; 
     pointer-events: none;
 }
 
+/* When JS adds 'visible', it appears */
 .side-nav.is-visible {
     opacity: 1;
     pointer-events: auto;
 }
 
+/* Expand on Hover */
 .side-nav:hover {
     width: 280px; 
 }
 
-/* --- Top List --- */
-.side-nav .nav-main-list {
+.side-nav ul {
     list-style: none;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 0;
-    /*This pushes everything else to the bottom */
-    margin-bottom: auto; 
 }
 
-/* --- Links & Buttons --- */
-.side-nav a, 
-.nav-btn-small {
+.side-nav li {
+    width: 100%;
+}
+
+.side-nav a {
     display: flex;
     align-items: center;
     padding: 15px 20px; 
     text-decoration: none;
     color: var(--color-text-muted);
-    white-space: nowrap; 
-    transition: all 0.2s;
-    cursor: pointer;
-    box-sizing: border-box; /* Ensures padding doesn't break width */
+    
+    white-space: normal; 
+    
+    transition: color 0.2s;
+    position: relative;
 }
 
-.side-nav a:hover,
-.nav-btn-small:hover {
+.side-nav a:hover {
     color: #63B3ED;
     background: rgba(255,255,255,0.05);
 }
 
-/* Numbers / Icons */
+/* The Number (Always Visible) */
 .nav-num {
     font-family: monospace;
     color: #63B3ED;
     font-weight: bold;
     margin-right: 20px;
     min-width: 20px;
-    text-align: center;
-    display: inline-block;
 }
 
-/* Text Titles */
+/* The Title (Visible only on hover/expand) */
 .nav-title {
     opacity: 0;
     transform: translateX(-10px);
     transition: all 0.3s ease;
-    font-size: 0.9rem;    
+    
+    /* Formatting for wrapped text */
+    display: block;       /* Ensures it fills space */
+    line-height: 1.2;     /* Tighter spacing for multi-line titles */
+    font-size: 0.9rem;    /* readable size */
+    
+    /* Smooth Animation Trick 
+       This forces the browser to calculate the text layout 
+       as if it's already expanded, preventing "jittery" 
+       reflows while the sidebar opens. */
+    min-width: 180px;     
 }
 
 .side-nav:hover .nav-title {
@@ -988,48 +990,11 @@ th:hover { background: #2C3646; }
     transform: translateX(0);
 }
 
-/* --- BOTTOM ACTION BUTTONS--- */
-.nav-bottom-actions {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0; /* Removed gap to save space */
-    border-top: 1px solid var(--color-border);
-    background: #1A202C;
-    
-    /*  prevent squashing and force to bottom */
-    flex-shrink: 0; 
-    margin-top: auto; 
-    padding-bottom: 20px; /* Add bottom spacing inside the container */
-    padding-top: 10px;
-}
-
-/* Fake Icons for Home/Glossary */
-.nav-bottom-actions a[href="#glossary"]::before {
-    content: 'G';
-    font-family: monospace;
-    color: #63B3ED;
-    font-weight: bold;
-    margin-right: 20px;
-    min-width: 20px;
-    text-align: center;
-}
-
-.nav-bottom-actions a[href="#landing"]::before {
-    content: 'H';
-    font-family: monospace;
-    color: #63B3ED;
-    font-weight: bold;
-    margin-right: 20px;
-    min-width: 20px;
-    text-align: center;
-}
-
-/* Tooltips (Original Logic) */
-.side-nav a[data-tooltip]::after {
+/* Tooltip Logic (Appears on right) */
+.side-nav a::after {
     content: attr(data-tooltip);
     position: absolute;
-    left: 100%; 
+    left: 100%; /* Push to the right of the navbar */
     top: 50%;
     transform: translateY(-50%);
     background: #63B3ED;
@@ -1045,6 +1010,6 @@ th:hover { background: #2C3646; }
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-.side-nav a[data-tooltip]:hover::after {
+.side-nav a:hover::after {
     opacity: 1;
 }
