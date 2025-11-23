@@ -1,0 +1,531 @@
+/* =====================================================
+   UNIVERSAL JURISDICTION TIMELINE - INTEGRATED VERSION 
+   Color Scheme: Namespaced variables to prevent conflicts
+   ===================================================== */
+
+:root {
+    /* TIMELINE-SPECIFIC VARIABLES (Namespaced with --timeline- prefix) */
+    --timeline-bg: #2D3748;           /* Dark Slate - matches site */
+    --timeline-bg-secondary: #283141;  /* Slightly darker section bg */
+    --timeline-text: #E2E8F0;         /* Light Gray - matches site */
+    --timeline-text-secondary: #A0AEC0; /* Muted Gray */
+    
+    /* TIMELINE SIGNATURE COLORS (Coral-red accents) */
+    --timeline-accent: #c9a55a;       /* Gold accent for timeline */
+    --timeline-line-color: #d4876f;   /* Coral-red timeline */
+    --timeline-marker: #6b9eae;       /* Blue-teal marker */
+    
+    /* Timeline-specific spacing */
+    --timeline-spacing-xs: 0.5rem;
+    --timeline-spacing-sm: 1rem;
+    --timeline-spacing-md: 2rem;
+    --timeline-spacing-lg: 4rem;
+}
+
+/* =====================================================
+   TIMELINE SECTION
+   ===================================================== */
+.timeline-section {
+    min-height: 800vh; 
+    position: relative;
+    background: var(--timeline-bg);
+}
+
+.timeline-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5vw;
+    overflow: hidden;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    transform: translateY(-50%);
+    background: var(--timeline-line-color);
+    clip-path: inset(0 100% 0 0);
+}
+
+/* =====================================================
+   TIMELINE TITLE HEADER
+   ===================================================== */
+.timeline-title-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    padding: 2rem 5vw;
+    text-align: center;
+    pointer-events: none; /* Allows clicks to pass through */
+    background: linear-gradient(to bottom, 
+                var(--timeline-bg) 0%, 
+                var(--timeline-bg) 60%, 
+                transparent 100%);
+}
+
+.timeline-title-header h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--timeline-text);
+    margin: 0;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .timeline-title-header {
+        padding: 1.5rem 1rem;
+    }
+    
+    .timeline-title-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* =====================================================
+   TIMELINE EVENTS
+   ===================================================== */
+.timeline-events { 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+}
+
+.timeline-event {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+}
+
+.event-marker {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: var(--timeline-marker);
+    border: 3px solid var(--timeline-bg);
+    border-radius: 50%;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 0 rgba(107, 158, 174, 0.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(107, 158, 174, 0.5); }
+    50% { box-shadow: 0 0 0 20px rgba(107, 158, 174, 0); }
+}
+
+/* FIX: Ensure branches sit ABOVE marker when a card is expanded */
+.timeline-event.has-expanded .cluster-branches {
+    z-index: 20; 
+}
+
+/* =====================================================
+   CARD STYLES
+   ===================================================== */
+
+/* Base Card Style */
+.event-content {
+    position: absolute;
+    width: 220px; 
+    padding: 1rem;
+    background: rgba(45, 55, 72, 0.95); /* Darker card matching site */
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border: 1px solid rgba(201, 165, 90, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    z-index: 5;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Hidden Content */
+.card-hidden-content {
+    display: none;
+    opacity: 0;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Read More Button */
+.read-more-btn {
+    background: transparent;
+    border: 1px solid rgba(201, 165, 90, 0.5);
+    color: var(--timeline-accent);
+    padding: 0.4rem 0.8rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.read-more-btn:hover {
+    background: var(--timeline-accent);
+    color: var(--timeline-bg);
+    border-color: var(--timeline-accent);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================================================
+   STAGGERING & LENGTHS
+   ===================================================== */
+
+/* Only apply staggering when NOT expanded */
+.event-content:not(.expanded).len-short.above { bottom: 100%; margin-bottom: 2rem; }
+.event-content:not(.expanded).len-short.below { top: 100%; margin-top: 2rem; }
+
+.event-content:not(.expanded).len-med.above   { bottom: 100%; margin-bottom: 4rem; }
+.event-content:not(.expanded).len-med.below   { top: 100%; margin-top: 4rem; }
+
+.event-content:not(.expanded).len-long.above  { bottom: 100%; margin-bottom: 6rem; }
+.event-content:not(.expanded).len-long.below  { top: 100%; margin-top: 6rem; }
+
+/* Default horizontal centering (overridden by JS when expanded) */
+.event-content:not(.expanded) { left: 50%; transform: translateX(-50%); }
+
+/* CONNECTOR LINES */
+.event-content::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 2px; 
+    background: var(--timeline-line-color); 
+    opacity: 1; 
+    transition: opacity 0.3s;
+}
+.event-content.expanded::before { opacity: 0; }
+
+.event-content:not(.expanded).len-short.above::before { top: 100%; height: 2rem; }
+.event-content:not(.expanded).len-short.below::before { bottom: 100%; height: 2rem; }
+
+.event-content:not(.expanded).len-med.above::before { top: 100%; height: 4rem; }
+.event-content:not(.expanded).len-med.below::before { bottom: 100%; height: 4rem; }
+
+.event-content:not(.expanded).len-long.above::before { top: 100%; height: 6rem; }
+.event-content:not(.expanded).len-long.below::before { bottom: 100%; height: 6rem; }
+
+/* =====================================================
+   TEXT & MEDIA
+   ===================================================== */
+.event-date {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--timeline-accent);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.event-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--timeline-text);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.event-description {
+    font-size: 0.9rem;
+    color: var(--timeline-text-secondary);
+    line-height: 1.5;
+    margin-bottom: var(--timeline-spacing-sm);
+}
+
+.event-media {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+}
+.event-media img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    object-fit: cover; 
+}
+.event-media iframe { 
+    width: 100%; 
+    aspect-ratio: 16 / 9; 
+    border: none; 
+}
+
+.event-extra {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #A0AEC0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: var(--timeline-spacing-xs);
+    line-height: 1.4;
+}
+.event-extra a { 
+    color: var(--timeline-accent); 
+    text-decoration: none; 
+}
+.event-extra a:hover { 
+    text-decoration: underline; 
+}
+
+/* =====================================================
+   YEAR LABELS
+   ===================================================== */
+.year-labels { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    top: 0; 
+    left: 0; 
+    pointer-events: none; 
+    z-index: 200; 
+}
+
+.year-label {
+    position: absolute;
+    top: auto;
+    bottom: 50px; 
+    font-family: 'Courier New', monospace;
+    font-size: 3rem; 
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.05); 
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+}
+
+/* =====================================================
+   PROGRESS INDICATOR
+   ===================================================== */
+.progress-indicator {
+    position: absolute;
+    bottom: var(--timeline-spacing-md);
+    right: var(--timeline-spacing-md);
+    z-index: 300;
+}
+
+.progress-bar { 
+    width: 200px; 
+    height: 4px; 
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 2px; 
+}
+
+.progress-fill { 
+    height: 100%; 
+    background: linear-gradient(90deg, var(--timeline-accent), var(--timeline-line-color)); 
+    width: 0%; 
+}
+
+.progress-text { 
+    display: block; 
+    text-align: right; 
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem; 
+    color: var(--timeline-text-secondary); 
+    margin-bottom: 5px; 
+}
+
+/* =====================================================
+   CLUSTER & BRANCHING STYLES (THE TREE)
+   ===================================================== */
+
+:root {
+    --line-width: 2px; /* UNIFORM THICKNESS FOR ALL LINES */
+}
+
+/* 1. The Wrapper */
+.timeline-event.cluster-wrapper {
+    /* Holds position on the main line */
+}
+
+/* 2. The Main Vertical Stem (Trunk) */
+.cluster-stem {
+    position: absolute;
+    left: 50%;
+    width: var(--line-width);
+    height: 4rem; 
+    background: var(--timeline-accent);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+.cluster-stem.above { bottom: 0; }
+.cluster-stem.below { top: 0; }
+
+/* 3. The Container for Branches */
+.cluster-branches {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+/* Position the container at the tip of the stem */
+.cluster-branches.above { bottom: 4rem; align-items: flex-end; }
+.cluster-branches.below { top: 4rem; align-items: flex-start; }
+
+/* 4. Individual Branch Node */
+.branch-node {
+    position: relative;
+    padding: 0 1rem; /* Horizontal spacing between branches */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* =====================================================
+   DRAWING THE CONNECTORS
+   ===================================================== */
+
+/* A. HORIZONTAL LINES (The Crossbar Segments) */
+.branch-node::before {
+    content: '';
+    position: absolute;
+    height: var(--line-width);
+    background: var(--timeline-accent);
+    width: 100%;
+    left: 0;
+}
+
+/* Position Horizontal Line based on Above/Below */
+.cluster-branches.above .branch-node::before { bottom: 0; }
+.cluster-branches.below .branch-node::before { top: 0; }
+
+/* TRIM THE HORIZONTAL LINES to create the "Fork" */
+/* First Child: Line starts at center (50%) and goes Right */
+.branch-node:first-child::before {
+    left: 50%;
+    width: 50%;
+}
+/* Last Child: Line starts at Left (0) and ends at Center (50%) */
+.branch-node:last-child::before {
+    left: 0;
+    width: 50%;
+}
+/* Single Child Cluster (Edge case safety): No horizontal line needed */
+.branch-node:only-child::before {
+    display: none;
+}
+
+/* B. VERTICAL LINES (Stem to Card) */
+.branch-node::after {
+    content: '';
+    position: absolute;
+    width: var(--line-width);
+    background: var(--timeline-accent);
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0; 
+    bottom: 0;
+    z-index: -1;
+}
+
+/* ABOVE: Line goes from bottom (crossbar) up to card */
+.cluster-branches.above .branch-node::after {
+    top: auto; 
+    bottom: 0;
+    height: 100%;
+}
+
+/* BELOW: Line goes from top (crossbar) down to card */
+.cluster-branches.below .branch-node::after {
+    top: 0; 
+    bottom: auto;
+    height: 100%;
+}
+
+/* =====================================================
+   STAGGERING (Variable Lengths)
+   ===================================================== */
+
+/* Reset Card positioning for clusters */
+.cluster-branches .event-content {
+    position: relative !important;
+    left: auto !important; 
+    top: auto !important; 
+    bottom: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+}
+.cluster-branches .event-content::before { 
+    display: none !important; 
+}
+
+/* Apply Staggering via Margins on the Card */
+
+/* ABOVE STAGGERING (Push Up) - Only when NOT expanded */
+.cluster-branches.above .event-content:not(.expanded).len-short { margin-bottom: 2rem !important; }
+.cluster-branches.above .event-content:not(.expanded).len-med   { margin-bottom: 5rem !important; }
+.cluster-branches.above .event-content:not(.expanded).len-long  { margin-bottom: 8rem !important; }
+
+/* BELOW STAGGERING (Push Down) - Only when NOT expanded */
+.cluster-branches.below .event-content:not(.expanded).len-short { margin-top: 2rem !important; }
+.cluster-branches.below .event-content:not(.expanded).len-med   { margin-top: 5rem !important; }
+.cluster-branches.below .event-content:not(.expanded).len-long  { margin-top: 8rem !important; }
+
+/* =====================================================
+   EXPANDED STATE
+   ===================================================== */
+
+/* 1. SHARED VISUALS (Base Styles) */
+.event-content.expanded {
+    width: 400px; 
+    max-width: 90vw; 
+    max-height: 80vh; 
+    overflow-y: auto; 
+    
+    position: fixed !important;
+    z-index: 2000 !important;
+    
+    background: #2D3748; /* Match site background */
+    border-color: var(--timeline-accent);
+    box-shadow: 0 25px 80px rgba(0,0,0,0.95); 
+    
+    /* Reset margins for everyone */
+    margin: 0 !important; 
+}
+
+.event-content.expanded .card-hidden-content {
+    display: block;
+    animation: fadeIn 0.4s forwards;
+}
+
+/* 2. STANDALONE CARDS (The "Original" Look) */
+.event-content.standalone-card.expanded {
+    transform: translate(-50%, -50%) !important;
+}
+
+/* 3. BRANCHING CARDS (The "Tree" Fix) */
+.cluster-branches .event-content.expanded {
+    position: fixed !important;
+    transform: none !important;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 768px) {
+    .event-content { width: 200px; }
+    .timeline-section { min-height: 600vh; }
+    .year-label { font-size: 2rem; }
+}

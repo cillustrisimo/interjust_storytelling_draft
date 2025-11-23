@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Report v4 (scrollytelling T_T)</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Styling sheet for timeline -->
-    <link title="timeline-styles" rel="stylesheet" href="timeline3/css/timeline.css">
+    <link rel="stylesheet" href="timeline_styles_integrated.css">   
+    
+    <!-- GSAP for animations (required by timeline) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -161,22 +163,21 @@
         <!-- TO MODIFY: Replace initFocusZoomChart() in charts.js -->
         <!-- ============================================================ -->
         
-       <section id="section-1" class="scroll-space">
-            <div class="sticky-viewport">
-                <!-- Timeline Title -->
-                <div class="timeline-header">
-                    <h2 class="timeline-title">The Development of Universal Jurisdiction</h2>
+       <section class="timeline-section">
+            <div class="timeline-container">
+                 <!-- Timeline Title -->
+                <div class="timeline-title-header">
+                    <h2>The Development of Universal Jurisdiction</h2>
                 </div>
                 
-                <!-- Skip Button -->
-                <button class="timeline-skip-btn" onclick="skipTimeline()">
-                    Skip Timeline →
-                </button>
-                
-                <!-- Timeline Track -->
-                <div class="timeline-track">
-                    <div class="main-line-bg"></div>
-                    <div class="main-line-fill"></div>
+                <div class="timeline-line"></div>
+                <div class="timeline-events" id="events-container"></div>
+                <div class="year-labels" id="labels-container"></div>
+                <div class="progress-indicator">
+                    <span class="progress-text">Timeline Progress</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -468,31 +469,10 @@
     <!-- d3js for graphs -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
-    <!-- homebrew js for charts (charts.js), and site nav functionality (scripts.js) -->
+    <!-- homebrew js for charts (charts.js), timeline script,  and site nav functionality (scripts.js) -->
     <script src="charts.js"></script>
+    <script src="timeline_script.js"></script> 
     <script src="scripts.js"></script>
-
-    <!-- Scripting for timeline.js -->
-    <script src="timeline3/js/timeline.js"></script>
-
-    <!-- initialize timeline chart -->
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            var additionalOptions = {
-                // DELETE or COMMENT OUT the script_path line
-                // script_path: 'timeline3/js/', 
-                
-                // You can keep other options if you need them, 
-                language: 'en'
-                // Optional: set start_at_slide if needed
-                // start_at_slide: 0
-            }
-
-            // 'timeline-embed' matches the ID of the div above
-            // 'timeline3.json' is the file in the same directory
-            var timeline = new TL.Timeline('timeline-embed', 'timeline3.json', additionalOptions);
-        });
-    </script>
 
 </body>
 </html>
