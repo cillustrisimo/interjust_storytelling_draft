@@ -140,17 +140,20 @@
 /* Base Card Style */
 .event-content {
     position: absolute;
-    width: 220px; 
+    /* Increased to 180px for better readability */
+    width: 160px; 
     padding: 1rem;
-    background: rgba(45, 55, 72, 0.95); /* Darker card matching site */
-    backdrop-filter: blur(10px);
-    border-radius: 8px;
-    border: 1px solid rgba(201, 165, 90, 0.2);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    z-index: 5;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    background: var(--timeline-card-bg, rgba(45, 55, 72, 0.95));
+    border: 1px solid var(--timeline-border, #4A5568);
+    border-radius: 4px; /* slightly smaller radius */
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    
+    /* Force font to be small and delicate */
+    font-size: 0.9rem; 
 }
-
 /* Hidden Content */
 .card-hidden-content {
     display: none;
@@ -203,46 +206,26 @@
 /* Default horizontal centering (overridden by JS when expanded) */
 .event-content:not(.expanded) { left: 50%; transform: translateX(-50%); }
 
-/* CONNECTOR LINES */
-.event-content::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    width: 2px; 
-    background: var(--timeline-line-color); 
-    opacity: 1; 
-    transition: opacity 0.3s;
-}
-.event-content.expanded::before { opacity: 0; }
-
-.event-content:not(.expanded).len-short.above::before { top: 100%; height: 2rem; }
-.event-content:not(.expanded).len-short.below::before { bottom: 100%; height: 2rem; }
-
-.event-content:not(.expanded).len-med.above::before { top: 100%; height: 4rem; }
-.event-content:not(.expanded).len-med.below::before { bottom: 100%; height: 4rem; }
-
-.event-content:not(.expanded).len-long.above::before { top: 100%; height: 6rem; }
-.event-content:not(.expanded).len-long.below::before { bottom: 100%; height: 6rem; }
 
 /* =====================================================
    TEXT & MEDIA
    ===================================================== */
 .event-date {
-    display: block;
-    font-family: 'Courier New', monospace;
-    font-size: 0.7rem;
     color: var(--timeline-accent);
-    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8rem; /* Smaller date */
     margin-bottom: 0.25rem;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .event-title {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--timeline-text);
-    margin-bottom: 0.5rem;
+    font-family: var(--font-head, serif);
+    font-size: 1.1rem; /* Smaller title */
     line-height: 1.2;
+    color: var(--timeline-text);
+    margin: 0;
 }
 
 .event-description {
@@ -297,20 +280,51 @@
     top: 0; 
     left: 0; 
     pointer-events: none; 
-    z-index: 200; 
+    z-index: 1; /* Keep this low so it sits behind cards */
 }
 
 .year-label {
     position: absolute;
-    top: auto;
-    bottom: 50px; 
+    
+    /* 1. ANCHOR TO CENTER LINE */
+    /* Instead of floating at bottom: 12vh, we anchor to the vertical center */
+    top: 50%;
+    bottom: auto; 
+    
+    /* 2. POSITIONING ADJUSTMENT */
+    /* X: -50% centers the text horizontally */
+    /* Y: -160% lifts it UP to sit just on top of the line */
+    transform: translate(-50%, -160%);
+    
+    /* 3. STYLING FOR UTILITY (Not Watermark) */
     font-family: 'Courier New', monospace;
-    font-size: 3rem; 
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.05); 
-    transform: translateX(-50%);
+    font-size: 0.85rem; /* Small, readable size */
+    font-weight: 600;   /* Bolder so it's legible at small size */
+    
+    /* visible color (light grey) instead of faint transparent */
+    color: rgba(255, 255, 255, 0.6); 
+    
     white-space: nowrap;
-    opacity: 0;
+    
+    /* 4. VISIBILITY */
+    /* If your JS fades these in, keep this 0. 
+       If you want them always visible, change to 1. */
+    opacity: 0; 
+    transform: translate(-50%, -120%);
+    pointer-events: none;
+    transition: opacity 0.3s ease; /* Smooth fade if JS toggles them */
+}
+
+/*=Add a little "tick mark" to connect the year to the line */
+.year-label::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -4px; /* Push tick down to touch the main line */
+    width: 1px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-50%);
 }
 
 /* =====================================================
@@ -318,7 +332,7 @@
    ===================================================== */
 .progress-indicator {
     position: absolute;
-    bottom: var(--timeline-spacing-md);
+    bottom: 3vh; /* Use viewport height for consistent positioning */
     right: var(--timeline-spacing-md);
     z-index: 300;
 }
@@ -363,13 +377,33 @@
     position: absolute;
     left: 50%;
     width: var(--line-width);
-    height: 4rem; 
     background: var(--timeline-accent);
     transform: translateX(-50%);
     z-index: 1;
 }
-.cluster-stem.above { bottom: 0; }
-.cluster-stem.below { top: 0; }
+
+/* Define Stem Heights based on Length Class */
+.cluster-stem.len-short { height: 2rem; }
+.cluster-stem.len-med   { height: 4rem; }
+.cluster-stem.len-long  { height: 6rem; }
+
+/* Fallback if no length class is present */
+.cluster-stem:not(.len-short):not(.len-med):not(.len-long) { height: 4rem; }
+
+/* Positioning */
+.cluster-stem.above { bottom: 0; transform-origin: bottom center; }
+.cluster-stem.below { top: 0; transform-origin: top center; }
+
+/* Fix for Standalone Cards margin */
+/* Ensure the card keeps its distance matching the stem height */
+.event-content:not(.expanded).len-short.above { margin-bottom: 2rem; }
+.event-content:not(.expanded).len-short.below { margin-top: 2rem; }
+
+.event-content:not(.expanded).len-med.above   { margin-bottom: 4rem; }
+.event-content:not(.expanded).len-med.below   { margin-top: 4rem; }
+
+.event-content:not(.expanded).len-long.above  { margin-bottom: 6rem; }
+.event-content:not(.expanded).len-long.below  { margin-top: 6rem; }
 
 /* 3. The Container for Branches */
 .cluster-branches {
@@ -489,21 +523,20 @@
 
 /* 1. SHARED VISUALS (Base Styles) */
 .event-content.expanded {
-    width: 400px; 
-    max-width: 90vw; 
-    max-height: 80vh; 
-    overflow-y: auto; 
+    /* Increased to 360px for better readability */
+    width: 360px !important; 
     
+    max-width: 85vw; 
+    max-height: 70vh; 
+    overflow-y: auto; 
     position: fixed !important;
     z-index: 2000 !important;
-    
-    background: #2D3748; /* Match site background */
+    background: #2D3748; 
     border-color: var(--timeline-accent);
     box-shadow: 0 25px 80px rgba(0,0,0,0.95); 
-    
-    /* Reset margins for everyone */
     margin: 0 !important; 
 }
+
 
 .event-content.expanded .card-hidden-content {
     display: block;
@@ -525,7 +558,8 @@
    RESPONSIVE
    ===================================================== */
 @media (max-width: 768px) {
-    .event-content { width: 200px; }
+    .event-content { width: 160px; }
     .timeline-section { min-height: 600vh; }
-    .year-label { font-size: 2rem; }
+    .year-label { font-size: 1.8rem; bottom: 10vh; } /* Use viewport height for mobile */
+    .progress-indicator { bottom: 2vh; } /* Adjust for mobile */
 }

@@ -1,30 +1,168 @@
 /* ===============================================
    1. CSS VARIABLES & RESET
    =============================================== */
+/* style.css */
+html {
+    font-size: 12px; 
+}
+
 :root {
     /* Typography */
     --font-body: Georgia, 'Times New Roman', Times, serif;
     --font-head: Georgia, 'Times New Roman', Times, serif;
     
-    /* Layout Dimensions */
-    --max-width: 1200px;    /* Full site width */
-    --wide-width: 900px;    /* NEW: Much wider width for Headers */
-    --text-width: 580px;    /* Standard: Narrow width for reading text */
+    /* --- 2. RESTORE THE WIDTHS --- */
+    /* You previously reduced these. We must increase them significantly 
+       so the text spreads out horizontally (like Image 2) instead of 
+       stacking vertically (Image 1). */
     
-    /* Colors */
-    --color-bg: #2D3748;           /* Dark Slate */
-    --color-text: #E2E8F0;         /* Light Gray */
-    --color-text-muted: #A0AEC0;   /* Muted Gray */
-    --color-border: #4A5568;       /* Dark Gray Border */
-    --color-accent: #63B3ED;       /* Bright Blue */
-    --color-card-bg: rgba(45, 55, 72, 0.95); /* Dark Card */
-    --color-header-bg: #1A202C;    /* Very Dark Header */
-    --color-section-alt: #283141;  /* Slightly darker section bg */
+    --max-width: 1200px;    /* Increased from 800px */
+    --wide-width: 900px;    /* Increased from 600px (Gives charts room) */
+    --text-width: 600px;    /* Increased from 400px (Crucial for narrative flow) */
+    
+    /* Colors (Unchanged) */
+    --color-bg: #2D3748;           
+    --color-text: #E2E8F0;         
+    --color-text-muted: #A0AEC0;   
+    --color-border: #4A5568;       
+    --color-accent: #63B3ED;       
+    --color-card-bg: rgba(45, 55, 72, 0.95); 
 }
 
+/* Force chart containers to be compact - but NOT scrollytelling charts */
+[id^="chart-section"]:not(.chart-wrapper) {
+    width: 100%;
+    max-width: var(--wide-width);
+    margin: 0 auto;
+    /* This is the key: Constrain height so it doesn't feel "Too Large" */
+    height: auto;
+    max-height: 60vh; /* Graph never exceeds 60% of viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+[id^="chart-section"]:not(.chart-wrapper) svg {
+    width: 100%;
+    height: auto; /* Allows aspect ratio to scale naturally */
+    max-height: 60vh;
+    max-width: 100%; /* Prevent overflow */
+}
+
+/* Specific constraints for scrollytelling chart SVGs */
+.chart-wrapper svg {
+    width: 100%;
+    height: auto;
+    display: block; /* Removes any inline spacing */
+}
+
+/* ===============================================
+   SCROLLYTELLING LAYOUT CONSTRAINTS
+   =============================================== */
+[id^="scrolly-section-"] {
+    position: relative;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 8rem auto 4rem auto;
+    padding: 0 20px;
+    overflow: visible; /* Don't clip content */
+}
+
+.sticky-graphic {
+    position: sticky;
+    top: 10vh; /* Moved up slightly */
+    height: 80vh; /* Increased from 70vh */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    overflow: visible; /* Don't clip overflowing content */
+}
+
+.chart-wrapper {
+    width: 100%;
+    max-width: 900px; /* Increased to give more room */
+    height: auto;
+    min-height: 400px; /* Ensure minimum height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.6s ease;
+    margin: 0 auto;
+    overflow: visible; /* Ensure nothing is clipped */
+}
+
+/* Ensure chart containers inside wrappers are also not constrained */
+.chart-wrapper > div {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+}
+
+.chart-wrapper.is-zoomed {
+    transform: scale(1.15);
+}
+
+.scrolly-steps {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto; /* Re-enable pointer events for cards */
+}
+
+.step {
+    min-height: 80vh; /* Increased height for better spacing */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2rem 0;
+}
+
+.step:first-child {
+    margin-top: 40vh; /* Push first step down so chart is visible */
+}
+
+.step:last-child {
+    margin-bottom: 40vh; /* Add space after last step */
+}
+
+.step .card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    pointer-events: auto;
+}
+
+.step .card.is-active {
+    opacity: 1;
+}
+
+.step .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+}
+
+.step .card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+}
+/* OPTIONAL: If things feel too tight vertically, add a bit more breathing room to sections */
+section {
+    padding: 4rem 0; /* Increases vertical spacing between chart sections */
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth;}
 
 body {
     font-family: var(--font-body);
@@ -357,12 +495,12 @@ a:hover { border-bottom-color: var(--color-accent); }
     box-shadow: 0 0 50px rgba(0,0,0,0.3);
     
 
-    transform: scale(2.5); 
+    transform: scale(2.0); 
 }
 
 .chart-wrapper.is-zoomed {
 
-    transform: scale(2.5); 
+    transform: scale(2.0); 
 }
 
 .scrolly-steps {

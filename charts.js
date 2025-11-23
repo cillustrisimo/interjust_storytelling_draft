@@ -28,7 +28,7 @@ function createChart_Section2A(containerId) {
     const container = d3.select(`#${containerId}`);
     container.selectAll("*").remove();
     
-    const width = 600;
+    const width = 600;  // Reduced from 800
     const height = 400;
     const margin = { top: 40, right: 40, bottom: 40, left: 50 };
     
@@ -36,7 +36,9 @@ function createChart_Section2A(containerId) {
         .attr("viewBox", `0 0 ${width} ${height}`)
         .attr("preserveAspectRatio", "xMidYMid meet")
         .style("width", "100%")
-        .style("height", "100%")
+        .style("height", "auto")
+        .style("display", "block")
+        .style("max-width", "none")
         .style("background", "#1A202C");
     
     // Generate time series data
@@ -255,14 +257,16 @@ function createChart_Section4A(containerId) {
     const container = d3.select(`#${containerId}`);
     container.selectAll("*").remove();
     
-    const width = 600;
+    const width = 600;  // Reduced from 800
     const height = 400;
-    
+
     const svg = container.append("svg")
         .attr("viewBox", `0 0 ${width} ${height}`)
         .attr("preserveAspectRatio", "xMidYMid meet")
         .style("width", "100%")
-        .style("height", "100%")
+        .style("height", "auto")
+        .style("display", "block")
+        .style("max-width", "none")
         .style("background", "#1A202C");
     
     const centerX = width / 2;
@@ -421,14 +425,16 @@ function createChart_Section4D(containerId) {
     const container = d3.select(`#${containerId}`);
     container.selectAll("*").remove();
     
-    const width = 600;
+    const width = 600;  // Reduced from 800
     const height = 400;
     
     const svg = container.append("svg")
         .attr("viewBox", `0 0 ${width} ${height}`)
         .attr("preserveAspectRatio", "xMidYMid meet")
         .style("width", "100%")
-        .style("height", "100%")
+        .style("height", "auto")
+        .style("display", "block")
+        .style("max-width", "none")
         .style("background", "#1A202C");
     
     const nodes = d3.range(15).map(i => ({
@@ -588,7 +594,7 @@ function createChart_Section4F(containerId) {
     const container = d3.select(`#${containerId}`);
     container.selectAll("*").remove();
     
-    const width = 600;
+    const width = 600;  // Reduced from 800
     const height = 400;
     const margin = { top: 40, right: 20, bottom: 20, left: 20 };
     
@@ -596,7 +602,9 @@ function createChart_Section4F(containerId) {
         .attr("viewBox", `0 0 ${width} ${height}`)
         .attr("preserveAspectRatio", "xMidYMid meet")
         .style("width", "100%")
-        .style("height", "100%")
+        .style("height", "auto")
+        .style("display", "block")
+        .style("max-width", "none")
         .style("background", "#1A202C");
     
     const rows = 10;

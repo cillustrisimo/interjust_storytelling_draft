@@ -62,15 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cluster.items.length === 1) {
                 // CASE A: SINGLE EVENT
                 const item = cluster.items[0];
-                const lengthClass = 'len-med'; 
+                
+                //  Apply staggering to standalone cards too (optional, but looks better);
+                const staggerPattern = ['len-med', 'len-long', 'len-short']; 
+                const lengthClass = staggerPattern[clusterIndex % staggerPattern.length];
+
                 const contentHtml = generateCardHtml(item);
 
                 const eventEl = document.createElement('div');
                 eventEl.classList.add('timeline-event');
                 eventEl.dataset.position = finalPercent;
                 
+                //  Inject the .cluster-stem div here!
+                // We add the positionClass (above/below) and the lengthClass (len-med, etc)
                 eventEl.innerHTML = `
                     <div class="event-marker"></div>
+                    <div class="cluster-stem ${positionClass} ${lengthClass}"></div>
                     <div class="event-content standalone-card ${positionClass} ${lengthClass} card-collapsed">
                         ${contentHtml}
                     </div>
@@ -274,6 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const yearLabels = document.querySelectorAll('.year-label');
         const progressFill = document.querySelector('.progress-fill');
 
+        // Initial CSS positioning (Left %)
         timelineEvents.forEach(el => positionElement(el, parseFloat(el.dataset.position)));
         yearLabels.forEach(el => positionElement(el, parseFloat(el.dataset.position)));
 
@@ -289,22 +297,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // 1. Draw the main line
         tl.to(timelineLine, { clipPath: 'inset(0 0% 0 0)', duration: 1, ease: 'none' }, 0);
 
         const paddingOffset = 0.05; 
         const widthFactor = 0.85;   
-
-        timelineEvents.forEach(event => {
-            const position = parseFloat(event.dataset.position);
-            const startTime = paddingOffset + (position / 100) * widthFactor;
-            tl.to(event, { opacity: 1, duration: 0.05, ease: 'power1.out' }, startTime);
-        });
-
+        
+        // --- CHANGE START ---
+        
+        // 2. Animate Years FIRST (No delay offset)
         yearLabels.forEach(label => {
             const position = parseFloat(label.dataset.position);
+            
+            // The year triggers exactly at its calculated position
             const startTime = paddingOffset + (position / 100) * widthFactor;
+            
             tl.to(label, { opacity: 1, duration: 0.05 }, startTime);
         });
+
+        // 3. Animate Events/Branches SECOND (With delay offset)
+        timelineEvents.forEach(event => {
+            const position = parseFloat(event.dataset.position);
+            
+            // We add + 0.03 to the startTime. 
+            // In a scrubbed timeline, this means the user must scroll 
+            // a tiny bit further past the Year Label before the Branch appears.
+            const branchDelay = 0.05; 
+            const startTime = paddingOffset + (position / 100) * widthFactor + branchDelay;
+            
+            tl.to(event, { opacity: 1, duration: 0.05, ease: 'power1.out' }, startTime);
+        });
+        
+        // --- CHANGE END ---
 
         setupIntroAnimation();
         setupConclusionAnimation();
