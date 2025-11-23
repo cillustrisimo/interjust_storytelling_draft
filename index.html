@@ -56,7 +56,7 @@
         <div class="glossary-container">
             
             <div class="glossary-left">
-                <h2 class="glossary-big-title">GLOSSARY</h2>
+                <h2 class="glossary-big-title">Table of Contents</h2>
                 <p class="glossary-subtitle">Navigate the report sections</p>
             </div>
 
@@ -160,10 +160,27 @@
         <!-- SECTION 1: TIMELINE CHART -->
         <!-- TO MODIFY: Replace initFocusZoomChart() in charts.js -->
         <!-- ============================================================ -->
-
-        <section id="timeline-section">
-            <div id="timeline-embed" style="width: 100%; height: 100%;"></div>
+        
+       <section id="section-1" class="scroll-space">
+            <div class="sticky-viewport">
+                <!-- Timeline Title -->
+                <div class="timeline-header">
+                    <h2 class="timeline-title">The Development of Universal Jurisdiction</h2>
+                </div>
+                
+                <!-- Skip Button -->
+                <button class="timeline-skip-btn" onclick="skipTimeline()">
+                    Skip Timeline →
+                </button>
+                
+                <!-- Timeline Track -->
+                <div class="timeline-track">
+                    <div class="main-line-bg"></div>
+                    <div class="main-line-fill"></div>
+                </div>
+            </div>
         </section>
+
 
         <!-- For the convention against torture image: is it legal to use?
         https://legal.un.org/avl/terms.html -->
