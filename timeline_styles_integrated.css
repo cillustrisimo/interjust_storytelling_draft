@@ -128,7 +128,6 @@
     50% { box-shadow: 0 0 0 20px rgba(107, 158, 174, 0); }
 }
 
-/* FIX: Ensure branches sit ABOVE marker when a card is expanded */
 .timeline-event.has-expanded .cluster-branches {
     z-index: 20; 
 }
@@ -140,7 +139,6 @@
 /* Base Card Style */
 .event-content {
     position: absolute;
-    /* Increased to 180px for better readability */
     width: 160px; 
     padding: 1rem;
     background: var(--timeline-card-bg, rgba(45, 55, 72, 0.95));
@@ -307,8 +305,6 @@
     white-space: nowrap;
     
     /* 4. VISIBILITY */
-    /* If your JS fades these in, keep this 0. 
-       If you want them always visible, change to 1. */
     opacity: 0; 
     transform: translate(-50%, -120%);
     pointer-events: none;
@@ -394,7 +390,6 @@
 .cluster-stem.above { bottom: 0; transform-origin: bottom center; }
 .cluster-stem.below { top: 0; transform-origin: top center; }
 
-/* Fix for Standalone Cards margin */
 /* Ensure the card keeps its distance matching the stem height */
 .event-content:not(.expanded).len-short.above { margin-bottom: 2rem; }
 .event-content:not(.expanded).len-short.below { margin-top: 2rem; }
@@ -523,7 +518,6 @@
 
 /* 1. SHARED VISUALS (Base Styles) */
 .event-content.expanded {
-    /* Increased to 360px for better readability */
     width: 360px !important; 
     
     max-width: 85vw; 
@@ -548,7 +542,7 @@
     transform: translate(-50%, -50%) !important;
 }
 
-/* 3. BRANCHING CARDS (The "Tree" Fix) */
+/* 3. BRANCHING CARDS */
 .cluster-branches .event-content.expanded {
     position: fixed !important;
     transform: none !important;

@@ -11,14 +11,9 @@ html {
     --font-body: Georgia, 'Times New Roman', Times, serif;
     --font-head: Georgia, 'Times New Roman', Times, serif;
     
-    /* --- 2. RESTORE THE WIDTHS --- */
-    /* You previously reduced these. We must increase them significantly 
-       so the text spreads out horizontally (like Image 2) instead of 
-       stacking vertically (Image 1). */
-    
-    --max-width: 1200px;    /* Increased from 800px */
-    --wide-width: 900px;    /* Increased from 600px (Gives charts room) */
-    --text-width: 600px;    /* Increased from 400px (Crucial for narrative flow) */
+    --max-width: 1200px;    
+    --wide-width: 900px;    
+    --text-width: 600px;    
     
     /* Colors (Unchanged) */
     --color-bg: #2D3748;           
@@ -70,8 +65,8 @@ html {
 
 .sticky-graphic {
     position: sticky;
-    top: 10vh; /* Moved up slightly */
-    height: 80vh; /* Increased from 70vh */
+    top: 10vh; 
+    height: 80vh; 
     width: 100%;
     display: flex;
     align-items: center;
@@ -82,7 +77,7 @@ html {
 
 .chart-wrapper {
     width: 100%;
-    max-width: 900px; /* Increased to give more room */
+    max-width: 900px; 
     height: auto;
     min-height: 400px; /* Ensure minimum height */
     display: flex;
@@ -114,7 +109,7 @@ html {
 }
 
 .step {
-    min-height: 80vh; /* Increased height for better spacing */
+    min-height: 80vh; 
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -234,7 +229,7 @@ a:hover { border-bottom-color: var(--color-accent); }
 }
 
 .hero-section h1 { 
-    font-size: 3.8rem; /* Increased size slightly to fill space */
+    font-size: 3.8rem; 
     margin-bottom: 25px; 
     letter-spacing: -1px;
     max-width: 100%; /* Ensures H1 fills the 900px container */

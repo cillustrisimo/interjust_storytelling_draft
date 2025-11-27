@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =====================================================
-    // INTERACTIVITY (UPDATED: TIMING FIX & Z-INDEX LAYERING)
+    // INTERACTIVITY 
     // =====================================================
     function setupInteractivity() {
         const eventsContainer = document.getElementById('events-container');
@@ -194,9 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         parentWrapper.classList.add('has-expanded'); // Add fix class
                     }
 
-                    // --- THE FIX: DELAY CALCULATION ---
-                    // We must wait a few milliseconds for the browser to re-calculate
-                    // the layout and determine the true expanded width/height.
                     setTimeout(() => {
                          // Dimensions of the expanded card (now accurate)
                         const newWidth = card.offsetWidth; 
